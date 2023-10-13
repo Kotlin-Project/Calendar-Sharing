@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Friend_list">
+
+    <android.widget.Button
+        android:id="@+id/friend_btn"
+        style="@style/friendlist_btn_font"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/friend_list_btn_un"
+        android:fontFamily="@font/a1009_3"
+        android:text="친구"
+        app:layout_constraintBottom_toTopOf="@+id/search_bar"
+        app:layout_constraintEnd_toStartOf="@+id/enroll_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.widget.Button
+        android:id="@+id/enroll_btn"
+        style="@style/friendlist_btn_font"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/friend_list_btn"
+        android:fontFamily="@font/a1009_3"
+        android:text="친구신청 목록"
+        app:layout_constraintBaseline_toBaselineOf="@+id/friend_btn"
+        app:layout_constraintEnd_toStartOf="@+id/search_btn"
+        app:layout_constraintStart_toEndOf="@+id/friend_btn" />
+
+    <android.widget.Button
+        android:id="@+id/search_btn"
+        style="@style/friendlist_btn_font"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/friend_list_btn"
+        android:fontFamily="@font/a1009_3"
+        android:text="친구 찾기"
+        app:layout_constraintBottom_toTopOf="@+id/search_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/enroll_btn"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/search_bar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="620dp"
+        android:adjustViewBounds="true"
+        android:drawableStart="@drawable/search_img_"
+        android:hint="검색"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_btn" />
+
+    <ListView
+        android:id="@+id/frd_list_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:dividerHeight="15dp"
+        android:divider="#ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
