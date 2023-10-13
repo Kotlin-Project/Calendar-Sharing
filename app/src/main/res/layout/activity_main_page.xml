@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="현재 시각"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/textClock2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextClock
+        android:id="@+id/textClock2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="39dp"
+        android:format12Hour="yyyy-MM-dd \na hh:mm:ss"
+        android:format24Hour="yyyy-MM-dd (E)\nHH:mm:ss"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/frd_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <android.widget.Button
+        android:id="@+id/friend_"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginBottom="202dp"
+        android:background="@drawable/main_page_btn"
+        android:text="친구 관리"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/share_btn"
+        app:layout_constraintTop_toBottomOf="@+id/frd_btn" />
+
+    <android.widget.Button
+        android:id="@+id/share_btn"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginEnd="29dp"
+        android:background="@drawable/main_page_btn"
+        android:text="공유 캘린더"
+        app:layout_constraintBaseline_toBaselineOf="@+id/friend_"
+        app:layout_constraintEnd_toStartOf="@+id/friend_"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <android.widget.Button
+        android:id="@+id/frd_btn"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginBottom="46dp"
+        android:background="@drawable/main_page_btn"
+        android:text="친구 캘린더"
+        app:layout_constraintBottom_toTopOf="@+id/friend_"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/My_btn"
+        app:layout_constraintTop_toBottomOf="@+id/textClock2" />
+
+    <android.widget.Button
+        android:id="@+id/My_btn"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginEnd="29dp"
+        android:background="@drawable/main_page_btn"
+        android:text="내 켈린더"
+        app:layout_constraintBaseline_toBaselineOf="@+id/frd_btn"
+        app:layout_constraintEnd_toStartOf="@+id/frd_btn"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

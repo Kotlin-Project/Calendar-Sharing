@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Sing_Up">
+
+    <EditText
+        android:id="@+id/Email_su"
+        android:layout_width="250dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="109dp"
+        android:layout_marginBottom="11dp"
+        android:ems="10"
+        android:hint="이메일"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/Name_su"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/Name_su"
+        android:layout_width="250dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+        android:hint="이름"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/PassWd_su"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Email_su" />
+
+    <EditText
+        android:id="@+id/PassWd_su"
+        android:layout_width="250dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+        android:hint="비밀번호"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/Re_PassWd_su"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Name_su" />
+
+    <EditText
+        android:id="@+id/Re_PassWd_su"
+        android:layout_width="250dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="22dp"
+        android:ems="10"
+        android:hint="비밀번호 확인"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/BirthDate_su"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PassWd_su" />
+
+    <EditText
+        android:id="@+id/BirthDate_su"
+        android:layout_width="250dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="21dp"
+        android:ems="10"
+        android:hint="생년월일(xxxx-xx-xx)"
+        android:inputType="date"
+        app:layout_constraintBottom_toTopOf="@+id/Phone_su"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Re_PassWd_su" />
+
+    <EditText
+        android:id="@+id/Phone_su"
+        android:layout_width="250dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="38dp"
+        android:ems="10"
+        android:hint="전화번호"
+        android:inputType="phone"
+        app:layout_constraintBottom_toTopOf="@+id/sing_up_su"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BirthDate_su" />
+
+    <Button
+        android:id="@+id/sing_up_su"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="142dp"
+        android:text="회원가입"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Phone_su" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
