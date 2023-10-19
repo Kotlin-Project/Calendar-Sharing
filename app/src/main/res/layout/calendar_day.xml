@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="90dp"
     android:orientation="vertical"
-    android:padding="5dp"
+    android:padding="0dp"
+    android:id="@+id/day_Layout"
     >
 
     <TextView
         android:id="@+id/day_text"
-        android:layout_marginLeft="5dp"
-        android:layout_width="37.5dp"
-        android:layout_height="37.5dp"
-        android:textSize="25sp"
+        android:layout_marginLeft="0dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:textSize="15sp"
         android:textStyle="bold"
+        android:layout_marginTop="5dp"
         android:text="1"
+        android:layout_gravity="center_horizontal|top"
         android:gravity="top|center_horizontal"/>
 
 </LinearLayout>
