@@ -42,10 +42,6 @@
             android:src="@drawable/right"
             android:background="@android:color/transparent"
             />
-
-
-
-
     </LinearLayout>
 
     <View
