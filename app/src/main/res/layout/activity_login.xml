@@ -63,5 +63,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/아이콘" />
+        app:srcCompat="@drawable/main_icon" />
 </androidx.constraintlayout.widget.ConstraintLayout>
