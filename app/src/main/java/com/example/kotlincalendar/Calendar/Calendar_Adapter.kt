@@ -22,6 +22,7 @@ class Calendar_Adapter(private val dayList:ArrayList<Date>, val userEmail: Strin
 
     //각 아이템의 뷰를 담당하는 클래스
     //xml의 day_text를 참조
+    //오류수정
     class ItemViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         val dayText=itemView.findViewById<TextView>(R.id.day_text)
         val dayLayout=itemView.findViewById<LinearLayout>(R.id.day_Layout)
