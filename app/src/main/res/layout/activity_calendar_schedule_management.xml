@@ -8,20 +8,36 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="선택 날짜"
-            android:fontFamily="@font/a1009_2"
-            android:textSize="30dp"/>
+        android:layout_width="match_parent"
+        android:layout_height="75dp">
 
+        <TextView
+            android:id="@+id/selected_Date_Schedule"
+            android:layout_width="301dp"
+            android:layout_height="51dp"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/a1009_2"
+            android:lineSpacingExtra="8dp"
+            android:text="선택 날짜"
+            android:textSize="20dp" />
+
+        <android.widget.Button
+            android:id="@+id/plus_btn_schedule"
+            android:layout_width="40dp"
+            android:layout_height="45dp"
+            android:background="@drawable/plus_solid"
+            android:layout_marginTop="10dp"
+            />
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/schedule_List"
+            android:layout_width="412dp"
+            android:layout_height="556dp"
+            android:orientation="horizontal" />
 
     </LinearLayout>
 </LinearLayout>

@@ -1,5 +1,6 @@
 package com.example.kotlincalendar.Calendar
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
@@ -7,14 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlincalendar.R
-import java.time.LocalDate
 import java.util.Calendar
 import java.util.Date
 
 //원래 Date클래스를 따로 만들어야 하지만 여기는 단순한 String이기 때문에 사용하지 않음
-class Calendar_Adapter(private val dayList:ArrayList<Date>) :
+class Calendar_Adapter(private val dayList:ArrayList<Date>, val userEmail: String?) :
     RecyclerView.Adapter<Calendar_Adapter.ItemViewHolder>(){
     //클릭 날짜
     private var selectedDate: Date? = null
@@ -83,13 +84,22 @@ class Calendar_Adapter(private val dayList:ArrayList<Date>) :
             }
         }
 
-        //클릭시 테두리 생성
+        //아이템 클릭
         val itemDate = dayList[position]
         val isItemSelected = itemDate == selectedDate
         holder.dayLayout.setBackgroundResource(if (isItemSelected) R.drawable.calendar_selected else 0)
         holder.itemView.setOnClickListener {
-            selectedDate = if (isItemSelected) null else itemDate
-            notifyDataSetChanged()
+            if(isItemSelected){
+                //테투리 있는 상태에서 클릭 시 일정추가 액티비티로 이동
+                //클릭 Date를 밀리초로 변환 후 일정추가 액티비티로 전달
+                val intent = Intent(holder.itemView.context,Calendar_Schedule_management::class.java)
+                intent.putExtra("selectedDate",selectedDate?.time)
+                intent.putExtra("user_email",userEmail)
+                holder.itemView.context.startActivity(intent)
+            }else {
+                selectedDate = if (isItemSelected) null else itemDate
+                notifyDataSetChanged()
+            }
         }
 /*        val itemDate = dayList[position]
         holder.itemView.setOnClickListener {

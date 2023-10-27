@@ -4,17 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login">
+    tools:context=".Login"
+>
 
 
     <android.widget.Button
         android:id="@+id/login_btn"
-        android:layout_width="100dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="21dp"
         android:text="로그인"
         android:fontFamily="@font/a1009_3"
-        android:background="#B8EBFF"
+        android:background="@drawable/all_radius_btn"
         android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
