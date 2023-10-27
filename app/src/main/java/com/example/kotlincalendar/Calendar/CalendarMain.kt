@@ -27,7 +27,10 @@ class CalendarMain : AppCompatActivity() {
         binding = ActivityCalendarBinding.inflate(layoutInflater);
         setContentView(binding.root)
 
-        setMonthView()
+        val userEmail = intent.getStringExtra("user_email")
+
+        setMonthView(userEmail)
+
 
         val prebtn=findViewById<ImageButton>(R.id.pre_btn)
         val nextbtn=findViewById<ImageButton>(R.id.next_btn)
@@ -35,16 +38,16 @@ class CalendarMain : AppCompatActivity() {
         //왼쪽버튼 클릭시 현재 날짜에서 -1월
         prebtn.setOnClickListener{
             CalendarUtil.selectedDate.add(Calendar.MONTH,-1)
-            setMonthView()
+            setMonthView(userEmail)
         }
         //오른쪽버튼 클릭시 현재 날짜에서 +1월
         nextbtn.setOnClickListener{
             CalendarUtil.selectedDate.add(Calendar.MONTH,1)
-            setMonthView()
+            setMonthView(userEmail)
         }
     }
     //날짜를 표시
-    private fun setMonthView(){
+    private fun setMonthView(userEmail:String?){
         //년 월 표시
         binding.monthText.text=monthYearFromDate(CalendarUtil.selectedDate)
 
@@ -52,7 +55,7 @@ class CalendarMain : AppCompatActivity() {
         val dayList=dayInMonthArray()
 
         //어댑터 초기화
-        val adapter = Calendar_Adapter(dayList)
+        val adapter = Calendar_Adapter(dayList, userEmail)
 
         //레이아웃 설정(열 개수)
         var manager:RecyclerView.LayoutManager=GridLayoutManager(applicationContext,7)

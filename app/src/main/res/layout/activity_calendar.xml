@@ -8,41 +8,73 @@
     tools:context=".Calendar.CalendarMain">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="65dp"
         android:orientation="horizontal">
-
         <ImageButton
-            android:id="@+id/pre_btn"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="13dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/left"
-            android:background="@android:color/transparent"/>
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:src="@drawable/icon_menu_size"
+            android:background="@color/white"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginLeft="45dp"
+            android:text="김준빈님의 캘린더"
+            android:textSize="26dp"
+            android:fontFamily="@font/a1009_2"
+            android:textColor="@color/black"
+            />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/month_text"
-            android:layout_width="240dp"
-            android:layout_height="56dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="1dp"
             android:gravity="center"
             android:padding="5dp"
             android:text="2023년 10월"
             android:textColor="@color/black"
             android:textSize="22sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/next_btn"
+            app:layout_constraintStart_toEndOf="@+id/pre_btn"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/next_btn"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:layout_marginRight="-20dp"
-            android:layout_marginTop="10dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/right"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="1dp"
             android:background="@android:color/transparent"
-            />
-    </LinearLayout>
+            android:src="@drawable/icon_right_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/month_text"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/pre_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/icon_left_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/month_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
         android:layout_width="match_parent"
@@ -130,8 +162,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/calendar_day_view"
             android:layout_width="match_parent"
-            android:layout_height="556dp"
+            android:layout_height="match_parent"
             android:orientation="horizontal" />
+
     </LinearLayout>
 
 </LinearLayout>

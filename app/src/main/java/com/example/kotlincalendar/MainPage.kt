@@ -36,6 +36,7 @@ class MainPage : AppCompatActivity() {
 
         my_btn.setOnClickListener{
             val intent = Intent(this, CalendarMain::class.java)
+            intent.putExtra("user_email",userEmail)
             startActivity(intent)
         }
         friend_btn.setOnClickListener{

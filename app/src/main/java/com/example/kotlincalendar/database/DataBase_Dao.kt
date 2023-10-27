@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import java.time.LocalDate
 
 @Dao
 interface User_Dao {
@@ -58,5 +59,19 @@ interface frdadd_db_Dao{
 
     @Query("SELECT * FROM frdadd_db WHERE Sender_ID = :userId")
     fun getSentRequests(userId: String): List<frdadd_db>
+}
+
+@Dao
+interface UserCalendar_Dao{
+    @Insert
+    fun insertSchedule(Scehdule: UserCalendar)
+    @Delete
+    fun deleteSchedule(Scehdule: UserCalendar)
+    @Update
+    fun updateSchedule(Scehdule: UserCalendar)
+
+    @Query("SELECT * FROM UserCalendar WHERE Calendar_UserEmail= :userEmail_management AND Schedule_LocalDate=:LocalDate_management")
+    fun seleteSchedule(userEmail_management:String, LocalDate_management:LocalDate):List<UserCalendar>
+
 
 }
