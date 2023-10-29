@@ -23,6 +23,7 @@ class Calendar_Schedule_management : AppCompatActivity() {
         setContentView(binding.root)
 
         val selectedDateMillis=intent.getLongExtra("selectedDate",0)
+        val userEmail = intent.getStringExtra("user_email")
         val selectedDate= Date(selectedDateMillis)
         val localDate = selectedDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
         val dateFormatter = SimpleDateFormat("yyyy년 MM월 dd일 \nEEEEE요일", Locale.getDefault())
@@ -34,8 +35,9 @@ class Calendar_Schedule_management : AppCompatActivity() {
 
         add_btn.setOnClickListener{
             val intent = Intent(this, Calendar_Schedule_Add::class.java)
-        intent.putExtra("selected_Date",selectedDateMillis)
-        startActivity(intent)
+            intent.putExtra("selected_Date",selectedDateMillis)
+            intent.putExtra("user_Email", userEmail)
+            startActivity(intent)
         }
 
     }
