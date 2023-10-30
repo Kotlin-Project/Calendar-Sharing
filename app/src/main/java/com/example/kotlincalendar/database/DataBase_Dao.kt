@@ -76,5 +76,6 @@ interface UserCalendar_Dao{
     fun getScheduleForUser(userEmail: String?, selectedDate: LocalDate): List<UserCalendar>
     @Query("SELECT * FROM UserCalendar WHERE Schedule_ID=:SelectedId")
     fun getCalendarItemById(SelectedId: Int):List<UserCalendar>
-
+    @Query("SELECT * FROM UserCalendar WHERE Calendar_UserEmail = :userEmail ORDER BY Schedule_Start")
+    fun getScheduleUser(userEmail: String?): List<UserCalendar>
 }

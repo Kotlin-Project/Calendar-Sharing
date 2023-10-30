@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="15dp">
+    <TextView
+        android:id="@+id/Preview_title_presc"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:text="일정 제목"
+        android:textSize="8dp"
+        android:fontFamily="@font/a1009_2"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:background="#99FF0000"
+        android:layout_margin="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        />
+
+</LinearLayout>
