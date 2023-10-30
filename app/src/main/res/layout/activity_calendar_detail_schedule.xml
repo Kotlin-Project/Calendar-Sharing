@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Calendar.Calendar_Detail_Schedule"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/Title_detail"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="일정 제목"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:fontFamily="@font/a1009_2"
+
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/view_left"
+            app:layout_constraintTop_toTopOf="@+id/view_left">
+
+            <View
+                android:id="@+id/view_left"
+                android:layout_width="120dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="3dp"
+                android:background="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="7dp"
+                tools:layout_editor_absoluteY="25dp" />
+
+            <View
+                android:id="@+id/view_right"
+                android:layout_width="120dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="3dp"
+                android:background="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/LocalDate_detail"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="280dp"
+                tools:layout_editor_absoluteY="24dp" />
+
+            <TextView
+                android:id="@+id/LocalDate_detail"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/a1009_2"
+                android:gravity="center"
+                android:text="선택날짜"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:layout_editor_absoluteX="140dp"
+                tools:layout_editor_absoluteY="0dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <TextView
+            android:id="@+id/star_text_btn_detail"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="69dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="10dp"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/a1009_2"
+            android:gravity="center"
+            android:text="08:00"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/finsh_text_btn_detail"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="66dp"
+            android:layout_marginBottom="10dp"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/a1009_2"
+            android:gravity="center"
+            android:text="09:00"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="11dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_vertical"
+            android:text="~"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/finsh_text_btn_detail"
+            app:layout_constraintStart_toEndOf="@+id/star_text_btn_detail"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginVertical="3dp"
+        android:background="@color/black"
+        android:layout_gravity="center"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="123dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="3dp"
+            android:background="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/memo_detail"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteX="7dp"
+            tools:layout_editor_absoluteY="25dp" />
+
+        <TextView
+            android:id="@+id/memo_detail"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/a1009_2"
+            android:gravity="center"
+            android:text="메모"
+            android:textSize="20dp"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintEnd_toStartOf="@+id/view2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteX="130dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="123dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="3dp"
+            android:background="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/memo_detail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteX="280dp"
+            tools:layout_editor_absoluteY="24dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/memoText_detail"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:text="메모"
+        android:textSize="20dp"
+        android:fontFamily="@font/a1009_2"
+        android:paddingStart="10dp"
+
+        />
+</LinearLayout>

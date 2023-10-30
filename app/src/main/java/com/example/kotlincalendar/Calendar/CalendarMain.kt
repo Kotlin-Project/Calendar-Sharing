@@ -3,12 +3,19 @@ package com.example.kotlincalendar.Calendar
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.kotlincalendar.R
+import com.example.kotlincalendar.database.AppDatabase
 import com.example.kotlincalendar.databinding.ActivityCalendarBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.w3c.dom.Text
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
@@ -26,14 +33,24 @@ class CalendarMain : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCalendarBinding.inflate(layoutInflater);
         setContentView(binding.root)
+        var db = AppDatabase.getInstance(this)
 
         val userEmail = intent.getStringExtra("user_email")
 
         setMonthView(userEmail)
 
-
+        val userName=findViewById<TextView>(R.id.UserName_camain)
         val prebtn=findViewById<ImageButton>(R.id.pre_btn)
         val nextbtn=findViewById<ImageButton>(R.id.next_btn)
+
+        //userName.text=
+        GlobalScope.launch(Dispatchers.IO) {
+            val userName_=db!!.userDao().getUserNameByEmail(userEmail)
+            withContext(Dispatchers.Main){
+                userName.text="${userName_}님의 캘린더"
+
+            }
+        }
 
         //왼쪽버튼 클릭시 현재 날짜에서 -1월
         prebtn.setOnClickListener{

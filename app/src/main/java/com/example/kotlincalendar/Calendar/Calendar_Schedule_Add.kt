@@ -16,6 +16,7 @@ import com.example.kotlincalendar.databinding.ActivityCalendarScheduleAddBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.time.LocalTime
 import java.time.ZoneId
@@ -105,10 +106,10 @@ class Calendar_Schedule_Add : AppCompatActivity() {
                 val timeParts = SelectStartTime.split(":")
                 LocalTime.of(timeParts[0].toInt(), timeParts[1].toInt())
             } else {
-                LocalTime.of(9, 0)  //값이 없으면 0900으로
+                LocalTime.of(8, 0)  //값이 없으면 0800으로
             }
-            val selectedFinshTime_= if (SelectStartTime!="끝나는 시간") {
-                val timeParts = SelectStartTime.split(":")
+            val selectedFinshTime_= if (SelectFinshTime!="끝나는 시간") {
+                val timeParts = SelectFinshTime.split(":")
                 LocalTime.of(timeParts[0].toInt(), timeParts[1].toInt())
             } else {
                 LocalTime.of(9, 0)  //값이 없으면 0900으로
@@ -116,6 +117,9 @@ class Calendar_Schedule_Add : AppCompatActivity() {
             var newSchedule= UserCalendar(0,userEmail,Title_,Memo_,Color_,localDate_,selectedStartTime_,selectedFinshTime_,alarm_)
             GlobalScope.launch(Dispatchers.IO) {
                 db!!.userCalendarDao().insertSchedule(newSchedule)
+                withContext(Dispatchers.Main){
+
+                }
             }
             Toast.makeText(this,"일정 생성 완료",Toast.LENGTH_SHORT).show()
             finish()

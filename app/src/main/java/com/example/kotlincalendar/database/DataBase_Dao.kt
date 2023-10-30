@@ -33,6 +33,9 @@ interface User_Dao {
 
     @Query("SELECT * FROM User WHERE Email=:email")
     fun getUserByEmail(email:String): User?
+
+    @Query("SELECT Name FROM User WHERE Email = :userEmail")
+    fun getUserNameByEmail(userEmail: String?): String?
 }
 @Dao
 interface frdlist_db_Dao{
@@ -69,9 +72,9 @@ interface UserCalendar_Dao{
     fun deleteSchedule(Scehdule: UserCalendar)
     @Update
     fun updateSchedule(Scehdule: UserCalendar)
-
-    @Query("SELECT * FROM UserCalendar WHERE Calendar_UserEmail= :userEmail_management AND Schedule_LocalDate=:LocalDate_management")
-    fun seleteSchedule(userEmail_management:String, LocalDate_management:LocalDate):List<UserCalendar>
-
+    @Query("SELECT * FROM UserCalendar WHERE Calendar_UserEmail = :userEmail AND Schedule_LocalDate = :selectedDate ORDER BY Schedule_Start")
+    fun getScheduleForUser(userEmail: String?, selectedDate: LocalDate): List<UserCalendar>
+    @Query("SELECT * FROM UserCalendar WHERE Schedule_ID=:SelectedId")
+    fun getCalendarItemById(SelectedId: Int):List<UserCalendar>
 
 }

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="60dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Color_scitem"
+        android:layout_width="10dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="6dp"
+        app:cardBackgroundColor="#FF0000"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Title_scitem"
+        app:layout_constraintStart_toEndOf="@+id/finsgTime_scitem"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Title_scitem"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="9dp"
+        android:fontFamily="@font/a1009_2"
+        android:gravity="center_vertical"
+        android:text="제목"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/Color_scitem"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/startTime_scitem"
+        android:layout_width="60dp"
+        android:layout_height="20dp"
+        android:fontFamily="@font/a1009_2"
+        android:gravity="center_vertical"
+        android:text="시작시간"
+        android:textSize="13dp"
+        app:layout_constraintBottom_toTopOf="@+id/finsgTime_scitem"
+        app:layout_constraintEnd_toStartOf="@+id/Title_scitem"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/finsgTime_scitem"
+        android:layout_width="60dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="6dp"
+        android:fontFamily="@font/a1009_2"
+        android:gravity="center_vertical"
+        android:text="종료시간"
+        android:textSize="13dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Color_scitem"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startTime_scitem"
+        app:layout_editor_absoluteY="30dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Title_scitem"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/icon_clock_size"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
