@@ -46,7 +46,7 @@ data class frdadd_db(
 @Entity
 data class UserCalendar(
     @PrimaryKey(autoGenerate=true)
-    val Schedule_ID:Long,
+    val Schedule_ID:Int,
     @ForeignKey(entity=User::class, parentColumns = ["Email"], childColumns = ["Calendar_UserEmail"])
     val Calendar_UserEmail:String?,
     val Schedule_Title:String,

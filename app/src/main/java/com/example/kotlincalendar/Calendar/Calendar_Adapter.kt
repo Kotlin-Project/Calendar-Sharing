@@ -95,7 +95,7 @@ class Calendar_Adapter(private val dayList:ArrayList<Date>, val userEmail: Strin
                 //클릭 Date를 밀리초로 변환 후 일정추가 액티비티로 전달
                 val intent = Intent(holder.itemView.context,Calendar_Schedule_management::class.java)
                 intent.putExtra("selectedDate",selectedDate?.time)
-                intent.putExtra("user_email",userEmail)
+                intent.putExtra("user_Email",userEmail)
                 holder.itemView.context.startActivity(intent)
             }else {
                 selectedDate = if (isItemSelected) null else itemDate
