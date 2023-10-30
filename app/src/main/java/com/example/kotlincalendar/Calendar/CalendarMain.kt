@@ -43,7 +43,6 @@ class CalendarMain : AppCompatActivity() {
         val prebtn=findViewById<ImageButton>(R.id.pre_btn)
         val nextbtn=findViewById<ImageButton>(R.id.next_btn)
 
-        //userName.text=
         GlobalScope.launch(Dispatchers.IO) {
             val userName_=db!!.userDao().getUserNameByEmail(userEmail)
             withContext(Dispatchers.Main){
@@ -65,23 +64,30 @@ class CalendarMain : AppCompatActivity() {
     }
     //날짜를 표시
     private fun setMonthView(userEmail:String?){
+        var db = AppDatabase.getInstance(this)
         //년 월 표시
         binding.monthText.text=monthYearFromDate(CalendarUtil.selectedDate)
 
         //날짜 생성 후 리스트에 넣기
         val dayList=dayInMonthArray()
 
-        //어댑터 초기화
-        val adapter = Calendar_Adapter(dayList, userEmail)
+        GlobalScope.launch(Dispatchers.IO) {
+            var scheduleList_=db!!.userCalendarDao().getScheduleUser(userEmail)
+            withContext(Dispatchers.Main){
+                //어댑터 초기화
+                val adapter = Calendar_Adapter(scheduleList_,dayList, userEmail)
 
-        //레이아웃 설정(열 개수)
-        var manager:RecyclerView.LayoutManager=GridLayoutManager(applicationContext,7)
+                //레이아웃 설정(열 개수)
+                var manager:RecyclerView.LayoutManager=GridLayoutManager(applicationContext,7)
 
-        //레이아웃 적용
-        binding.calendarDayView.layoutManager=manager
+                //레이아웃 적용
+                binding.calendarDayView.layoutManager=manager
 
-        //어댑터 적용
-        binding.calendarDayView.adapter=adapter
+                //어댑터 적용
+                binding.calendarDayView.adapter=adapter
+            }
+        }
+
     }
 
     //DateTimeFormatter 클래스를 사용하여 Date정보를 원하는 형식으로 정의
