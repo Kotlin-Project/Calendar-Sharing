@@ -1,56 +1,63 @@
 package com.example.kotlincalendar.Calendar
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageButton
 import android.widget.TextView
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
 import com.example.kotlincalendar.R
 import com.example.kotlincalendar.database.AppDatabase
 import com.example.kotlincalendar.databinding.ActivityCalendarBinding
+import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.w3c.dom.Text
-import java.time.LocalDate
-import java.time.YearMonth
-import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Date
 
-
-//private val binding get() = mBinding!!
-
 class CalendarMain : AppCompatActivity() {
-
     private lateinit var binding: ActivityCalendarBinding
+    private lateinit var drawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCalendarBinding.inflate(layoutInflater);
         setContentView(binding.root)
+
         var db = AppDatabase.getInstance(this)
-
         val userEmail = intent.getStringExtra("user_email")
-
         setMonthView(userEmail)
 
-        val userName=findViewById<TextView>(R.id.UserName_camain)
-        val prebtn=findViewById<ImageButton>(R.id.pre_btn)
-        val nextbtn=findViewById<ImageButton>(R.id.next_btn)
+        val userName=binding.UserNameCamain
+        val prebtn=binding.preBtn
+        val nextbtn=binding.nextBtn
+        val menubtn=binding.menuBtnCalendar
 
+        //햄버거 메뉴
+        drawerLayout = findViewById(R.id.drawer_layout)
+        val navigationView = findViewById<NavigationView>(R.id.navigationView)
+        navigationView.inflateHeaderView(R.layout.navigation_header) // 헤더 레이아웃 설정
+
+        val headerView = navigationView.getHeaderView(0)
+        val userNameTextView = headerView.findViewById<TextView>(R.id.user_name_header)
+
+        menubtn.setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
+
+
+        //-------------------캘린더 구현-------------------------------------------
         GlobalScope.launch(Dispatchers.IO) {
             val userName_=db!!.userDao().getUserNameByEmail(userEmail)
             withContext(Dispatchers.Main){
                 userName.text="${userName_}님의 캘린더"
-
+                userNameTextView.text ="${userName_}님 환영합니다"
             }
         }
-
         //왼쪽버튼 클릭시 현재 날짜에서 -1월
         prebtn.setOnClickListener{
             CalendarUtil.selectedDate.add(Calendar.MONTH,-1)
@@ -87,7 +94,6 @@ class CalendarMain : AppCompatActivity() {
                 binding.calendarDayView.adapter=adapter
             }
         }
-
     }
 
     //DateTimeFormatter 클래스를 사용하여 Date정보를 원하는 형식으로 정의

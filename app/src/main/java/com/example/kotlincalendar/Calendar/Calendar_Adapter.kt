@@ -9,25 +9,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlincalendar.R
-import com.example.kotlincalendar.database.AppDatabase
 import com.example.kotlincalendar.database.UserCalendar
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
-//원래 Date클래스를 따로 만들어야 하지만 여기는 단순한 String이기 때문에 사용하지 않음
+
 class Calendar_Adapter(private val scheduleList_:List<UserCalendar>, private val dayList:ArrayList<Date>, val userEmail: String?) :
     RecyclerView.Adapter<Calendar_Adapter.ItemViewHolder>(){
     //클릭 날짜
+    
     private var selectedDate: Date? = null
     //private var scheduleList: List<UserCalendar> = emptyList() //어뎁터를 연결하기 위해서는 무조건 어뎁터는 한번 초기화
     // 일정 목록 초기화(작업중)----------------------------
@@ -151,6 +146,7 @@ class Calendar_Adapter(private val scheduleList_:List<UserCalendar>, private val
             }
         }
     }
+
     override fun getItemCount():Int{
         return dayList.size
     }
