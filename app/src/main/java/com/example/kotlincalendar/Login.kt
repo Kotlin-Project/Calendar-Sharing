@@ -27,10 +27,10 @@ class Login : AppCompatActivity() {
 
         var db = AppDatabase.getInstance(this)
 
-        val Login_btn=findViewById<Button>(R.id.login_btn)
-        val Sing_Up_Btn=findViewById<TextView>(R.id.sing_up_btn_Login)
-        val Current_User=findViewById<EditText>(R.id.Email_Login)
-        val Passwd_User=findViewById<EditText>(R.id.PassWd_Login)
+        val Login_btn=binding.loginBtn
+        val Sing_Up_Btn=binding.singUpBtnLogin
+        val Current_User=binding.EmailLogin
+        val Passwd_User=binding.PassWdLogin
 
         //VAL cURRENT_
 

@@ -23,11 +23,11 @@ class Calendar_Detail_Schedule : AppCompatActivity() {
         db = AppDatabase.getInstance(this)
         val scheduleId = intent.getIntExtra("scheduleId", -1)
 
-        val TitleText=findViewById<TextView>(R.id.Title_detail)
-        val selectedLocalTime=findViewById<TextView>(R.id.LocalDate_detail)
-        val startTimeLocal=findViewById<TextView>(R.id.star_text_btn_detail)
-        val finshTimeLocal=findViewById<TextView>(R.id.finsh_text_btn_detail)
-        val memoText=findViewById<TextView>(R.id.memoText_detail)
+        val TitleText=binding.TitleDetail
+        val selectedLocalTime=binding.LocalDateDetail
+        val startTimeLocal=binding.starTextBtnDetail
+        val finshTimeLocal=binding.finshTextBtnDetail
+        val memoText=binding.memoTextDetail
 
         GlobalScope.launch(Dispatchers.IO) {
             val schedule = db?.userCalendarDao()!!.getCalendarItemById(scheduleId)

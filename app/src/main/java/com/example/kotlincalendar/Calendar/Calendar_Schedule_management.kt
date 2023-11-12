@@ -40,9 +40,9 @@ class Calendar_Schedule_management : AppCompatActivity() {
         val formattedDate = dateFormatter.format(selectedDate)
 
         //Rayout연결
-        val select_Date=findViewById<TextView>(R.id.selected_Date_Schedule)
-        val add_btn=findViewById<Button>(R.id.plus_btn_schedule)
-        val schedule_List=findViewById<RecyclerView>(R.id.schedule_List)
+        val select_Date=binding.selectedDateSchedule
+        val add_btn=binding.plusBtnSchedule
+        val schedule_List=binding.scheduleList
         select_Date.text=formattedDate
 
         //-----구현-----

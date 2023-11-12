@@ -37,15 +37,15 @@ class Calendar_Schedule_Add : AppCompatActivity() {
         val selectedDateMillis = intent.getLongExtra("selected_Date",0)
         val userEmail = intent.getStringExtra("user_Email")
         //레이아웃 연결
-        val colorSpinner: Spinner = findViewById(R.id.Color_spinner)
-        val clockSpinner: Spinner=findViewById(R.id.clock_spinner)
-        val select_Date=findViewById<TextView>(R.id.selected_Date_Add)
-        val title_EditText=findViewById<EditText>(R.id.title_Add)
-        val start_Text_Btn=findViewById<TextView>(R.id.star_text_btn_Add)
-        val finsh_Text_Btn=findViewById<TextView>(R.id.finsh_text_btn_Add)
-        val memo_EditText=findViewById<EditText>(R.id.memo_EditText_Add)
-        val cancel_btn=findViewById<Button>(R.id.cancel_btn_scadd)
-        val save_btn=findViewById<Button>(R.id.save_btn_scadd)
+        val colorSpinner: Spinner = binding.ColorSpinner
+        val clockSpinner: Spinner=binding.clockSpinner
+        val select_Date=binding.selectedDateAdd
+        val title_EditText=binding.titleAdd
+        val start_Text_Btn=binding.starTextBtnAdd
+        val finsh_Text_Btn=binding.finshTextBtnAdd
+        val memo_EditText=binding.memoEditTextAdd
+        val cancel_btn=binding.cancelBtnScadd
+        val save_btn=binding.saveBtnScadd
 
         var db = AppDatabase.getInstance(this)
 
