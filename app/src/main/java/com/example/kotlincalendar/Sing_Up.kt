@@ -24,13 +24,13 @@ class Sing_Up : AppCompatActivity() {
 
         var db = AppDatabase.getInstance(this)
 
-        var Sing_Up_btn=findViewById<Button>(R.id.sing_up_su)
+        var Sing_Up_btn=binding.singUpSu
 
-        var Email: EditText = findViewById(R.id.Email_su)
-        val Password: EditText=findViewById(R.id.PassWd_su)
-        var Name: EditText = findViewById(R.id.Name_su)
-        var PhoneNum: EditText = findViewById(R.id.Phone_su)
-        val brith_date: EditText = findViewById(R.id.BirthDate_su)
+        var Email=binding.EmailSu
+        val Password=binding.PassWdSu
+        var Name=binding.NameSu
+        var PhoneNum=binding.PhoneSu
+        val brith_date=binding.BirthDateSu
         val Profile_img: Int = R.drawable.test
         val SubTitle: String = " "
 

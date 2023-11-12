@@ -36,9 +36,9 @@ class Friend_list : AppCompatActivity() {
 //--------------------------------------
         val userEmail = intent.getStringExtra("user_email")
         val userEmail_: String = userEmail.toString()
-        val frd_btn = findViewById<Button>(R.id.friend_btn)
-        val enroll_btn = findViewById<Button>(R.id.enroll_btn)
-        val search_btn = findViewById<Button>(R.id.search_btn)
+        val frd_btn = binding.friendBtn
+        val enroll_btn = binding.enrollBtn
+        val search_btn = binding.searchBtn
 
 //------------------------------------------------------
         frd_btn.setOnClickListener {
