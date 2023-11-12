@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.example.kotlincalendar.Calendar.CalendarMain
 import com.example.kotlincalendar.database.AppDatabase
 import com.example.kotlincalendar.databinding.ActivityLoginBinding
 import kotlinx.coroutines.CoroutineScope
@@ -43,7 +44,7 @@ class Login : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
 
                     if (user != null) {
-                        val intent = Intent(this@Login, MainPage::class.java)
+                        val intent = Intent(this@Login, CalendarMain::class.java)
                         intent.putExtra("user_email",Current_User_)
                         startActivity(intent)
                     }

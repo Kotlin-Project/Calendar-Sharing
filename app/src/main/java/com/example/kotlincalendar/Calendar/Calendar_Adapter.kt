@@ -24,15 +24,7 @@ class Calendar_Adapter(private val scheduleList_:List<UserCalendar>, private val
     //클릭 날짜
     
     private var selectedDate: Date? = null
-    //private var scheduleList: List<UserCalendar> = emptyList() //어뎁터를 연결하기 위해서는 무조건 어뎁터는 한번 초기화
-    // 일정 목록 초기화(작업중)----------------------------
 
-/*    fun setScheduleList(scheduleList: List<UserCalendar>) {//scheduleList를 데이터베이스에서 가져온 데이터로 설정
-        this.scheduleList = scheduleList
-        notifyDataSetChanged()
-    }*/
-
-    //작업 중-----------------------------
     //각 아이템의 뷰를 담당하는 클래스
     class ItemViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         val dayText=itemView.findViewById<TextView>(R.id.day_text)
