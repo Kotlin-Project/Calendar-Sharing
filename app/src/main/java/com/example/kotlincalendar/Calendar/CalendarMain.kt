@@ -1,13 +1,14 @@
 package com.example.kotlincalendar.Calendar
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kotlincalendar.Friend_list
 import com.example.kotlincalendar.R
 import com.example.kotlincalendar.database.AppDatabase
 import com.example.kotlincalendar.databinding.ActivityCalendarBinding
@@ -39,7 +40,7 @@ class CalendarMain : AppCompatActivity() {
 
         //햄버거 메뉴
         drawerLayout = findViewById(R.id.drawer_layout)
-        val navigationView = findViewById<NavigationView>(R.id.navigationView)
+        val navigationView = binding.navigationView
         navigationView.inflateHeaderView(R.layout.navigation_header) // 헤더 레이아웃 설정
 
         val headerView = navigationView.getHeaderView(0)
@@ -47,6 +48,27 @@ class CalendarMain : AppCompatActivity() {
 
         menubtn.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
+        }
+
+        navigationView.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.my_Calendar -> {
+                    true
+                }
+                R.id.menu_share_Calendar -> {
+                    true
+                }
+                R.id.menu_friend -> {
+                    val intent = Intent(this, Friend_list::class.java)
+                    intent.putExtra("user_email",userEmail)
+                    startActivity(intent)
+                    true
+                }
+                R.id.menu_Userre -> {
+                    true
+                }
+                else -> false
+            }
         }
 
 

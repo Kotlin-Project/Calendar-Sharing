@@ -6,10 +6,10 @@
         android:id="@+id/my_Calendar"
         android:title="내 캘린더" />
     <item
-        android:id="@+id/menu_friend_Calendar"
+        android:id="@+id/menu_share_Calendar"
         android:title="공유 캘린더" />
     <item
-        android:id="@+id/menu_share_Calendar"
+        android:id="@+id/menu_friend"
         android:title="친구 관리"/>
     <item
         android:id="@+id/menu_Userre"
