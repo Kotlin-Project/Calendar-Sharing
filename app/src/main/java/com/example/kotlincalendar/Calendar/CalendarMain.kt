@@ -8,6 +8,8 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kotlincalendar.FriendList.Frd_list
+import com.example.kotlincalendar.FriendList.Frd_management
 import com.example.kotlincalendar.Friend_list
 import com.example.kotlincalendar.R
 import com.example.kotlincalendar.database.AppDatabase
@@ -59,7 +61,7 @@ class CalendarMain : AppCompatActivity() {
                     true
                 }
                 R.id.menu_friend -> {
-                    val intent = Intent(this, Friend_list::class.java)
+                    val intent = Intent(this, Frd_management::class.java)
                     intent.putExtra("user_email",userEmail)
                     startActivity(intent)
                     true
