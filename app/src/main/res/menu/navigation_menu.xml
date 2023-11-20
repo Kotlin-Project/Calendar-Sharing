@@ -12,7 +12,7 @@
         android:id="@+id/menu_friend"
         android:title="친구 관리"/>
     <item
-        android:id="@+id/menu_Userre"
+        android:id="@+id/menu_userChange"
         android:title="정보 수정"/>
 
 </menu>

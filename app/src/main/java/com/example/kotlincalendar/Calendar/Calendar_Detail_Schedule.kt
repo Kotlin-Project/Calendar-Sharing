@@ -37,7 +37,7 @@ class Calendar_Detail_Schedule : AppCompatActivity() {
                 selectedLocalTime.text=selectedSchedule.Schedule_LocalDate.toString()
                 startTimeLocal.text=selectedSchedule.Schedule_Start.toString()
                 finshTimeLocal.text=selectedSchedule.Schedule_End.toString()
-                memoText.text=selectedSchedule.Schedule_Memo
+
             }
         }
     }

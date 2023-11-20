@@ -15,11 +15,14 @@
             android:name=".FriendList.Frd_management"
             android:exported="false" />
         <activity
-            android:name=".FriendList.Frdlist_main"
+            android:name=".my_page"
             android:exported="false" />
-        <activity
-            android:name=".Navigation_Drawer.Navigation_Main"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".FriendList.Frdlist_main"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".Navigation_Drawer.Navigation_Main"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".Calendar.Calendar_Detail_Schedule"
             android:exported="false" />

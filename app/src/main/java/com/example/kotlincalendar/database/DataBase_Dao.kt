@@ -22,6 +22,9 @@ interface User_Dao {
     @Delete
     fun delete(user: User)
 
+    @Query("SELECT * FROM User WHERE Email = :email")
+    fun getUserId(email: String?):List<User>
+
     @Query("SELECT * FROM frdlist_db WHERE (user1=:userEmail AND User2=:friendEmail) OR (User1=:friendEmail AND User2=:userEmail)")
     fun areFriends(userEmail: String, friendEmail: String): frdlist_db?
 
