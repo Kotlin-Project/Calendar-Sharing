@@ -2,7 +2,9 @@ package com.example.kotlincalendar.Calendar
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -11,9 +13,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlincalendar.FriendList.Frd_list
 import com.example.kotlincalendar.FriendList.Frd_management
 import com.example.kotlincalendar.Friend_list
+import com.example.kotlincalendar.Login
 import com.example.kotlincalendar.R
 import com.example.kotlincalendar.database.AppDatabase
 import com.example.kotlincalendar.databinding.ActivityCalendarBinding
+import com.example.kotlincalendar.my_page
 import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -48,6 +52,15 @@ class CalendarMain : AppCompatActivity() {
         val headerView = navigationView.getHeaderView(0)
         val userNameTextView = headerView.findViewById<TextView>(R.id.user_name_header)
 
+        //로그아웃 기능
+        val logoutBtn = headerView.findViewById<Button>(R.id.logout_Btn)
+        logoutBtn.setOnClickListener {
+            Toast.makeText(this, "로그아웃 되었습니다", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, Login::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+        }
+
         menubtn.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
         }
@@ -55,6 +68,9 @@ class CalendarMain : AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.my_Calendar -> {
+                    val intent = Intent(this, CalendarMain::class.java)
+                    intent.putExtra("user_email", userEmail)
+                    startActivity(intent)
                     true
                 }
                 R.id.menu_share_Calendar -> {
@@ -66,7 +82,10 @@ class CalendarMain : AppCompatActivity() {
                     startActivity(intent)
                     true
                 }
-                R.id.menu_Userre -> {
+                R.id.menu_userChange -> {
+                    val intent = Intent(this, my_page::class.java)
+                    intent.putExtra("user_email", userEmail)
+                    startActivity(intent)
                     true
                 }
                 else -> false
@@ -76,7 +95,7 @@ class CalendarMain : AppCompatActivity() {
 
         //-------------------캘린더 구현-------------------------------------------
         GlobalScope.launch(Dispatchers.IO) {
-            val userName_=db!!.userDao().getUserNameByEmail(userEmail)
+            val userName_ =db!!.userDao().getUserNameByEmail(userEmail)
             withContext(Dispatchers.Main){
                 userName.text="${userName_}님의 캘린더"
                 userNameTextView.text ="${userName_}님 환영합니다"
