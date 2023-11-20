@@ -32,7 +32,7 @@ class PreviewSchedule_Adapter(private val scheduleList: List<UserCalendar>) : Re
     }
 
     override fun getItemCount(): Int {
-        return return limitedItemList.size
+        return limitedItemList.size
     }
 
     private fun getColorForColorName(colorName: String): String {

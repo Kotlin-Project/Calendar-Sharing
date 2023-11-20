@@ -6,12 +6,6 @@
     android:orientation="vertical"
     tools:context=".FriendList.Frd_userlist">
 
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:text="2번째 프래그먼트"
-        />
     <EditText
         android:id="@+id/search_bar"
         android:layout_width="match_parent"
@@ -28,6 +22,7 @@
         android:layout_gravity="center"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/userlist_frd_View"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
