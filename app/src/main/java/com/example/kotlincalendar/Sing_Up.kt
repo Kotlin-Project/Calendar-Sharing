@@ -3,11 +3,9 @@ package com.example.kotlincalendar
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
+import com.example.kotlincalendar.Entity.User
 import com.example.kotlincalendar.database.AppDatabase
-import com.example.kotlincalendar.database.User
 import com.example.kotlincalendar.databinding.ActivitySingUpBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope

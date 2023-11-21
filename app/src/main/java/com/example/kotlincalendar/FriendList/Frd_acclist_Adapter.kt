@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlincalendar.database.AppDatabase
-import com.example.kotlincalendar.database.User
-import com.example.kotlincalendar.database.frdadd_db
+import com.example.kotlincalendar.Entity.FriendAdd
+import com.example.kotlincalendar.Entity.User
 import com.example.kotlincalendar.databinding.ListFriendRecItemBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class Frd_acclist_Adapter(val context: Context,
-                          val frdRequests:List<frdadd_db>,
+                          val frdRequests:List<FriendAdd>,
                           val userEmail: String) : RecyclerView.Adapter<Frd_acclist_Adapter.FrdViewHolder>() {
     lateinit var db: AppDatabase
 

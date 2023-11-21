@@ -44,9 +44,9 @@ class Frd_userlist : Fragment() {
         db = AppDatabase.getInstance(requireContext())
 
         CoroutineScope(Dispatchers.IO).launch {
-            val friendsList = db?.frdlistDbDao()?.getFriends(userEmail)
-            val sentRequests = db?.frdaddDbDao()?.getSentRequests(userEmail)
-            val receivedRequests = db?.frdaddDbDao()?.getRequests(userEmail)
+            val friendsList = db?.friendListDao()?.getFriends(userEmail)
+            val sentRequests = db?.friendAddDao()?.getSentRequests(userEmail)
+            val receivedRequests = db?.friendAddDao()?.getRequests(userEmail)
             val allUsers = db?.userDao()?.Select_frd()
 
             val filterUsers = allUsers!!.filter { user ->

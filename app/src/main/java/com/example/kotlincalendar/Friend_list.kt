@@ -2,10 +2,9 @@ package com.example.kotlincalendar
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import com.example.kotlincalendar.database.AppDatabase
-import com.example.kotlincalendar.database.User
-import com.example.kotlincalendar.database.frdadd_db
+import com.example.kotlincalendar.Entity.FriendAdd
+import com.example.kotlincalendar.Entity.User
 import com.example.kotlincalendar.databinding.ActivityFriendListBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -17,7 +16,7 @@ class Friend_list : AppCompatActivity() {
     private val binding get() = mBinding!!
     var db: AppDatabase? = null
     var User_List = arrayListOf<User>()
-    var frdadd_List = arrayListOf<frdadd_db>()
+    var frdadd_List = arrayListOf<FriendAdd>()
     //var FrdAdd_rec_List=arrayListOf<frdadd_db>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +43,7 @@ class Friend_list : AppCompatActivity() {
         frd_btn.setOnClickListener {
             frd_btn.isSelected = frd_btn.isSelected != true
             CoroutineScope(Dispatchers.IO).launch {
-                val friendsList_ = db?.frdlistDbDao()!!.getFriends(userEmail_)
+                val friendsList_ = db?.friendListDao()!!.getFriends(userEmail_)
                 withContext(Dispatchers.Main) {
                     val Adapter = FrdViewAdapter(this@Friend_list, friendsList_, userEmail_)
                     binding.frdListView.adapter = Adapter
@@ -56,7 +55,7 @@ class Friend_list : AppCompatActivity() {
         enroll_btn.setOnClickListener {
             enroll_btn.isSelected = enroll_btn.isSelected != true
             CoroutineScope(Dispatchers.IO).launch {
-                val friendRequests = db?.frdaddDbDao()!!.getRequests(userEmail_)
+                val friendRequests = db?.friendAddDao()!!.getRequests(userEmail_)
 
                 withContext(Dispatchers.Main) {
                     val Adapter = FrdView_rec_Adapter(this@Friend_list, friendRequests)
@@ -69,9 +68,9 @@ class Friend_list : AppCompatActivity() {
         search_btn.setOnClickListener {
             search_btn.isSelected = search_btn.isSelected != true
             CoroutineScope(Dispatchers.IO).launch {
-                val friendsList = db?.frdlistDbDao()?.getFriends(userEmail_)
-                val sentRequests = db?.frdaddDbDao()?.getSentRequests(userEmail_)
-                val receivedRequests = db?.frdaddDbDao()?.getRequests(userEmail_)
+                val friendsList = db?.friendListDao()?.getFriends(userEmail_)
+                val sentRequests = db?.friendAddDao()?.getSentRequests(userEmail_)
+                val receivedRequests = db?.friendAddDao()?.getRequests(userEmail_)
                 val allUsers = db?.userDao()?.Select_frd()
 
                 val filterUsers = allUsers!!.filter { user ->
