@@ -3,10 +3,12 @@ package com.example.kotlincalendar.FriendList
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlincalendar.database.AppDatabase
 import com.example.kotlincalendar.database.User
 import com.example.kotlincalendar.database.frdadd_db
+import com.example.kotlincalendar.database.frdlist_db
 import com.example.kotlincalendar.databinding.ListFriendRecItemBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -30,6 +32,33 @@ class Frd_acclist_Adapter(val context: Context,
         val item_Acc_btn = binding.accBtn
         val item_del_btn=binding.disBtn
 
+        init {
+            item_Acc_btn.setOnClickListener {
+                val senderEmail = userEmail
+                val receiverEmail = frdRequests[absoluteAdapterPosition].Sender_ID
+
+                CoroutineScope(Dispatchers.IO).launch {
+                    val friendlistAdd = frdlist_db(0, User1 = senderEmail, User2 = receiverEmail)
+                    db?.frdlistDbDao()?.insertFriend(friendlistAdd)
+                    db?.frdaddDbDao()?.deleteRequest(frdRequests[absoluteAdapterPosition])
+
+                    withContext((Dispatchers.Main)) {
+                        Toast.makeText(context, "신청을 수락했습니다", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+            item_del_btn.setOnClickListener {
+                CoroutineScope(Dispatchers.IO).launch {
+                    db?.frdaddDbDao()?.deleteRequest(frdRequests[adapterPosition])
+
+                    withContext(Dispatchers.Main) {
+                        notifyDataSetChanged()
+                        Toast.makeText(context, "신청을 거절했습니다", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
         //ViewHolder
         fun bind(frdUser: User){
             item_icon.setImageResource(frdUser.Profile_img)

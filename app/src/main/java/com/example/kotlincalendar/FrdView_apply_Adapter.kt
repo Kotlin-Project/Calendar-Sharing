@@ -53,7 +53,7 @@ class FrdView_apply_Adapter(
 
 
 
-/*        acc_btn.setOnClickListener {
+        acc_btn.setOnClickListener {
             val senderEmail = userEmail
             val receiverEmail = frd.Email
 
@@ -73,7 +73,7 @@ class FrdView_apply_Adapter(
                     }
                 }
             }
-        }*/
+        }
         return mBinding!!.root
     }
 }
