@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
+    android:layout_height="200dp"
     android:background="#D8EAFF"
     android:orientation="vertical"
     android:padding="18dp">
@@ -10,30 +10,40 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <ImageView
-            android:layout_width="90dp"
-            android:layout_height="90dp"
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@drawable/test" />
 
         <android.widget.Button
             android:id="@+id/logout_Btn"
             android:layout_width="26dp"
             android:layout_height="26dp"
-            android:layout_marginStart="126dp"
+            android:layout_marginStart="134dp"
             android:textSize="10dp"
             android:fontFamily="@font/a1009_2"
             android:background="@drawable/right_from_bracket_solid" />
 
     </LinearLayout>
+
     <TextView
         android:id="@+id/user_name_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:text="김수빈"
         android:fontFamily="@font/a1009_2"
         android:textColor="@color/black"
-        android:textSize="18dp"
+        android:textSize="22dp"
         />
+
+    <TextView
+        android:layout_width="224dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:textSize="16dp"
+        android:fontFamily="@font/a1009_2"
+        android:text="한줄소개를 입력해주세요." />
 
 </LinearLayout>
