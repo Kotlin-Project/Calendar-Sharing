@@ -46,14 +46,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/circle_iv"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/test"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <LinearLayout
                     android:id="@+id/userNameLinear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="14dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toBottomOf="@+id/circle_iv">
 
                     <View
                         android:layout_width="40dp"
@@ -197,44 +209,19 @@
                         android:inputType="textEmailAddress" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/userProfileLinear"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/userPhoneLinear">
-
-                    <View
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="4dp"
-                        android:background="@drawable/image_solid" />
-
-                    <android.widget.Button
-                        android:id="@+id/userProfile"
-                        android:layout_width="250dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="8dp"
-                        android:background="#E8E8E8"
-                        android:fontFamily="@font/a1009_2"
-                        android:text="프로필 이미지 변경" />
-
-                </LinearLayout>
-
                 <android.widget.Button
                     android:id="@+id/changeBtn"
                     android:layout_width="180dp"
                     android:layout_height="44dp"
                     android:layout_marginTop="30dp"
+                    android:layout_marginBottom="20dp"
                     android:background="#C5E8FF"
                     android:fontFamily="@font/a1009_2"
                     android:text="정보 변경"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/userProfileLinear" />
+                    app:layout_constraintTop_toBottomOf="@+id/userPhoneLinear" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </LinearLayout>

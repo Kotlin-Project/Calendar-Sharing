@@ -43,6 +43,7 @@ class my_page : AppCompatActivity() {
         val userBirthView = binding.userBirth
         val userPhoneView = binding.userPhone
 
+        //회원 정보 데이터 => editText
         CoroutineScope(Dispatchers.IO).launch {
             val userDataDB = db?.userDao()!!.getUserId(getUserEmail)
             withContext(Dispatchers.Main) {
@@ -73,7 +74,7 @@ class my_page : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             val userName = db!!.userDao().getUserNameByEmail(getUserEmail)
             withContext(Dispatchers.Main){
-                userNameTextView.text ="${userName}님 환영합니다"
+                userNameTextView.text ="${userName}"
             }
         }
 

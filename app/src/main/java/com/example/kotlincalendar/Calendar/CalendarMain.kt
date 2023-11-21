@@ -98,7 +98,7 @@ class CalendarMain : AppCompatActivity() {
             val userName_ =db!!.userDao().getUserNameByEmail(userEmail)
             withContext(Dispatchers.Main){
                 userName.text="${userName_}님의 캘린더"
-                userNameTextView.text ="${userName_}님 환영합니다"
+                userNameTextView.text ="${userName_}"
             }
         }
         //왼쪽버튼 클릭시 현재 날짜에서 -1월

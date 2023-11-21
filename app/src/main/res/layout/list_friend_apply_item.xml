@@ -3,24 +3,22 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+    android:padding="6dp"
+      >
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/frd_image_"
-        android:layout_width="20dp"
-        android:layout_height="50dp"
-        android:layout_weight="1"
-        android:src="@drawable/test"
-        app:civ_border_color="#00BCD4"
-        app:civ_border_overlay="true"
-        app:civ_border_width="1dp" />
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/test" />
 
     <LinearLayout
         android:layout_width="150dp"
         android:layout_height="match_parent"
         android:layout_weight="2"
+        android:layout_marginStart="4dp"
         android:orientation="vertical">
-
 
         <TextView
             android:id="@+id/text_name"
@@ -28,8 +26,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="center_vertical"
-            android:text="New Text"
+            android:text="김수빈"
             android:textColor="#000000"
+            android:fontFamily="@font/a1009_2"
             android:textSize="24dp" />
 
 
@@ -38,23 +37,24 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="New Text"
+            android:text="한줄소개"
+            android:fontFamily="@font/a1009_1"
             android:textColor="#666666"
             android:textSize="16dp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="75dp"
-        android:layout_height="wrap_content">
-
-        <Button
+        android:layout_height="match_parent">
+        <android.widget.Button
             android:id="@+id/acc_btn"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
-            android:layout_weight="2"
+            android:layout_width="75dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="14dp"
+            android:background="#C5E8FF"
+            android:fontFamily="@font/a1009_2"
             android:text="신청" />
+
     </LinearLayout>
 
 
