@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Toast
 import com.example.kotlincalendar.database.AppDatabase
-import com.example.kotlincalendar.database.frdlist_db
+import com.example.kotlincalendar.Entity.FriendList
 import com.example.kotlincalendar.databinding.ListFriendItemBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -17,7 +17,7 @@ import kotlinx.coroutines.withContext
 
 class FrdViewAdapter(
     val context: Context,
-    val FriendsList:List<frdlist_db>,
+    val FriendsList:List<FriendList>,
     val userEmail:String
     ): BaseAdapter() {
     private var mBinding: ListFriendItemBinding? = null
@@ -59,7 +59,7 @@ class FrdViewAdapter(
         delete_btn.setOnClickListener {
             Toast.makeText(context,"삭제", Toast.LENGTH_SHORT).show()
             CoroutineScope(Dispatchers.IO).launch{
-                db?.frdlistDbDao()?.deleteFriend(FriendsList[position])
+                db?.friendListDao()?.deleteFriend(FriendsList[position])
                 withContext(Dispatchers.Main) {
                     notifyDataSetChanged()
                     Toast.makeText(context,"삭제했습니다",Toast.LENGTH_SHORT).show()

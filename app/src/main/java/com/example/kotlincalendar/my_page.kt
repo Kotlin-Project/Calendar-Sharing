@@ -12,7 +12,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.example.kotlincalendar.Calendar.CalendarMain
 import com.example.kotlincalendar.FriendList.Frd_management
 import com.example.kotlincalendar.database.AppDatabase
-import com.example.kotlincalendar.database.User_Dao
+import com.example.kotlincalendar.Dao.UserDao
 import com.example.kotlincalendar.databinding.ActivityCalendarBinding
 import com.example.kotlincalendar.databinding.ActivityMyPageBinding
 import kotlinx.coroutines.CoroutineScope

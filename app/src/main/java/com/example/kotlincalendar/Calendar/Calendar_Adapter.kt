@@ -12,7 +12,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlincalendar.R
-import com.example.kotlincalendar.database.UserCalendar
+import com.example.kotlincalendar.Entity.UserCalendar
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date

@@ -41,7 +41,7 @@ class Frd_acclist : Fragment() {
         db = AppDatabase.getInstance(requireContext())
 
         CoroutineScope(Dispatchers.IO).launch {
-            val friendRequests = db?.frdaddDbDao()!!.getRequests(userEmail)
+            val friendRequests = db?.friendAddDao()!!.getRequests(userEmail)
             withContext(Dispatchers.Main) {
                 val friendAcclistAdapter = Frd_acclist_Adapter(requireContext(),friendRequests, userEmail)
                 recyclerView.adapter = friendAcclistAdapter

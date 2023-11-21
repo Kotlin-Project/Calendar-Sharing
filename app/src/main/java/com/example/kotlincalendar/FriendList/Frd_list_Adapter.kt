@@ -1,13 +1,12 @@
 package com.example.kotlincalendar.FriendList
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlincalendar.database.AppDatabase
-import com.example.kotlincalendar.database.User
-import com.example.kotlincalendar.database.frdlist_db
+import com.example.kotlincalendar.Entity.FriendList
+import com.example.kotlincalendar.Entity.User
 import com.example.kotlincalendar.databinding.ListFriendItemBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -19,7 +18,7 @@ import kotlinx.coroutines.withContext
 
 class Frd_list_Adapter(
     val context: Context,
-    val friendList: List<frdlist_db>,
+    val friendList: List<FriendList>,
     val userEmail: String) : RecyclerView.Adapter<Frd_list_Adapter.FrdViewHolder>() {
     lateinit var db: AppDatabase
 
