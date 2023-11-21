@@ -42,7 +42,7 @@ class Frd_list_Adapter(
                 if (position != RecyclerView.NO_POSITION) {
                     val currentFriend = friendList[position]
                     CoroutineScope(Dispatchers.IO).launch {
-                        db?.frdlistDbDao()?.deleteFriend(currentFriend)
+                        db?.friendListDao()?.deleteFriend(currentFriend)
                         withContext(Dispatchers.Main) {
                             notifyDataSetChanged()
                             Toast.makeText(context, "삭제했습니다", Toast.LENGTH_SHORT).show()

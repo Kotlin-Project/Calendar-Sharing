@@ -10,15 +10,12 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kotlincalendar.FriendList.Frd_list
 import com.example.kotlincalendar.FriendList.Frd_management
-import com.example.kotlincalendar.Friend_list
 import com.example.kotlincalendar.Login
 import com.example.kotlincalendar.R
 import com.example.kotlincalendar.database.AppDatabase
 import com.example.kotlincalendar.databinding.ActivityCalendarBinding
 import com.example.kotlincalendar.my_page
-import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

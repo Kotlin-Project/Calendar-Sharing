@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlincalendar.database.AppDatabase
 import com.example.kotlincalendar.Entity.FriendAdd
+import com.example.kotlincalendar.Entity.FriendList
 import com.example.kotlincalendar.Entity.User
 import com.example.kotlincalendar.databinding.ListFriendRecItemBinding
 import kotlinx.coroutines.CoroutineScope
@@ -37,9 +38,9 @@ class Frd_acclist_Adapter(val context: Context,
                 val receiverEmail = frdRequests[absoluteAdapterPosition].Sender_ID
 
                 CoroutineScope(Dispatchers.IO).launch {
-                    val friendlistAdd = frdlist_db(0, User1 = senderEmail, User2 = receiverEmail)
-                    db?.frdlistDbDao()?.insertFriend(friendlistAdd)
-                    db?.frdaddDbDao()?.deleteRequest(frdRequests[absoluteAdapterPosition])
+                    val friendlistAdd = FriendList(0, User1 = senderEmail, User2 = receiverEmail)
+                    db?.friendListDao()?.insertFriend(friendlistAdd)
+                    db?.friendAddDao()?.deleteRequest(frdRequests[absoluteAdapterPosition])
 
                     withContext((Dispatchers.Main)) {
                         Toast.makeText(context, "신청을 수락했습니다", Toast.LENGTH_SHORT).show()
@@ -49,7 +50,7 @@ class Frd_acclist_Adapter(val context: Context,
 
             item_del_btn.setOnClickListener {
                 CoroutineScope(Dispatchers.IO).launch {
-                    db?.frdaddDbDao()?.deleteRequest(frdRequests[adapterPosition])
+                    db?.friendAddDao()?.deleteRequest(frdRequests[adapterPosition])
 
                     withContext(Dispatchers.Main) {
                         notifyDataSetChanged()

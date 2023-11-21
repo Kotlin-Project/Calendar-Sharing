@@ -3,10 +3,16 @@ package com.example.kotlincalendar.FriendList
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kotlincalendar.Entity.FriendAdd
 import com.example.kotlincalendar.Entity.User
 import com.example.kotlincalendar.database.AppDatabase
 import com.example.kotlincalendar.databinding.ListFriendApplyItemBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class Frd_userlist_Adapter (
     val context: Context,
@@ -37,8 +43,8 @@ class Frd_userlist_Adapter (
                     val isRequestPending = db?.userDao()?.isRequestPending(userEmail, receiverEmail)
 
                     if (areFriends == null && isRequestPending == null && userEmail != receiverEmail) {
-                        val friendRequest = frdadd_db(0, Sender_ID = senderEmail, Receiver_ID = receiverEmail)
-                        db?.frdaddDbDao()?.insertRequest(friendRequest)
+                        val friendRequest = FriendAdd(0, Sender_ID = senderEmail, Receiver_ID = receiverEmail)
+                        db?.friendAddDao()?.insertRequest(friendRequest)
 
                         withContext(Dispatchers.Main) {
                             Toast.makeText(context, "신청완료", Toast.LENGTH_SHORT).show()
