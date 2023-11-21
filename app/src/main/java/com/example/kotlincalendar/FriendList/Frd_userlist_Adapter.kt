@@ -26,6 +26,31 @@ class Frd_userlist_Adapter (
         val item_title = binding.textTitle
         val item_acc_btn = binding.accBtn
 
+        init {
+            item_acc_btn.setOnClickListener {
+                val frdUser = friendUserList[absoluteAdapterPosition]
+                val senderEmail = userEmail
+                val receiverEmail = frdUser.Email
+
+                CoroutineScope(Dispatchers.IO).launch {
+                    val areFriends = db?.userDao()?.areFriends(userEmail, receiverEmail)
+                    val isRequestPending = db?.userDao()?.isRequestPending(userEmail, receiverEmail)
+
+                    if (areFriends == null && isRequestPending == null && userEmail != receiverEmail) {
+                        val friendRequest = frdadd_db(0, Sender_ID = senderEmail, Receiver_ID = receiverEmail)
+                        db?.frdaddDbDao()?.insertRequest(friendRequest)
+
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(context, "신청완료", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(context, "이미 친구이거나 신청 목록을 확인해주세요", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+        }
         //ViewHolder에 User에 있는 데이터 넣기
         fun bind(frdUser: User){
             item_icon.setImageResource(frdUser.Profile_img)
@@ -43,22 +68,6 @@ class Frd_userlist_Adapter (
         val userList = friendUserList[position]
         userList?.let{ holder.bind(it)}
 
-/*        CoroutineScope(Dispatchers.IO).launch {
-            val areFriends = db?.userDao()?.areFriends(userEmail, frd.Email)
-            val isRequestPending = db?.userDao()?.isRequestPending(userEmail, frd.Email)
-            if (areFriends == null && isRequestPending == null && userEmail!=frd.Email) {
-                val friendRequest = frdadd_db(0, Sender_ID = senderEmail, Receiver_ID = receiverEmail)
-                db?.frdaddDbDao()?.insertRequest(friendRequest)
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(context, "신청완료", Toast.LENGTH_SHORT).show()
-                }
-            }
-            else {
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(context, "이미 친구이거나 신청 목록을 확인해주세요", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }*/
     }
 
 

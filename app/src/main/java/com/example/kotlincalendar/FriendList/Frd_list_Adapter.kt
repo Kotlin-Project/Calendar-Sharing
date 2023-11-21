@@ -3,6 +3,7 @@ package com.example.kotlincalendar.FriendList
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlincalendar.database.AppDatabase
 import com.example.kotlincalendar.Entity.FriendList
@@ -35,6 +36,21 @@ class Frd_list_Adapter(
         val item_title = binding.textTitle
         val item_delete_btn = binding.accBtn
 
+        init {
+            item_delete_btn.setOnClickListener {
+                val position = absoluteAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val currentFriend = friendList[position]
+                    CoroutineScope(Dispatchers.IO).launch {
+                        db?.frdlistDbDao()?.deleteFriend(currentFriend)
+                        withContext(Dispatchers.Main) {
+                            notifyDataSetChanged()
+                            Toast.makeText(context, "삭제했습니다", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+        }
         //ViewHolder에 User에 있는 데이터 넣기
         fun bind(frdUser: User){
             item_icon.setImageResource(frdUser.Profile_img)
@@ -60,6 +76,7 @@ class Frd_list_Adapter(
                 //if (frdUser != null) <-이거랑 같음
             }
         }
+
     }
 
     //항목 수 반환
