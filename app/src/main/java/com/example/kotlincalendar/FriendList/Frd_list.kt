@@ -42,7 +42,7 @@ class Frd_list : Fragment() {
         db = AppDatabase.getInstance(requireContext())
 
         CoroutineScope(Dispatchers.IO).launch {
-            val friendsList_ = db?.frdlistDbDao()!!.getFriends(userEmail)
+            val friendsList_ = db?.friendListDao()!!.getFriends(userEmail)
             withContext(Dispatchers.Main) {
                 val friendListAdapter = Frd_list_Adapter(requireContext(),friendsList_, userEmail)
                 recyclerView.adapter = friendListAdapter

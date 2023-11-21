@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlincalendar.R
-import com.example.kotlincalendar.database.UserCalendar
+import com.example.kotlincalendar.Entity.UserCalendar
 
 class Calendar_Schedule_Adapter(private var scheduleList: List<UserCalendar>) :
     RecyclerView.Adapter<Calendar_Schedule_Adapter.ViewHolder>() {

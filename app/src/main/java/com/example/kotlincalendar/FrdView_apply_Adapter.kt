@@ -5,15 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import android.widget.Toast
+import com.example.kotlincalendar.Entity.User
 import com.example.kotlincalendar.database.AppDatabase
-import com.example.kotlincalendar.database.User
-import com.example.kotlincalendar.database.frdadd_db
 import com.example.kotlincalendar.databinding.ListFriendApplyItemBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
 class FrdView_apply_Adapter(

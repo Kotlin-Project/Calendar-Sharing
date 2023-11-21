@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlincalendar.R
-import com.example.kotlincalendar.database.UserCalendar
+import com.example.kotlincalendar.Entity.UserCalendar
 
 class PreviewSchedule_Adapter(private val scheduleList: List<UserCalendar>) : RecyclerView.Adapter<PreviewSchedule_Adapter.PreviewViewHolder>() {
 

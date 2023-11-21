@@ -3,16 +3,10 @@ package com.example.kotlincalendar.FriendList
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kotlincalendar.Entity.User
 import com.example.kotlincalendar.database.AppDatabase
-import com.example.kotlincalendar.database.User
-import com.example.kotlincalendar.database.frdadd_db
 import com.example.kotlincalendar.databinding.ListFriendApplyItemBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class Frd_userlist_Adapter (
     val context: Context,

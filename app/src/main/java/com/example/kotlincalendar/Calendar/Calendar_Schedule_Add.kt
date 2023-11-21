@@ -11,7 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.kotlincalendar.R
 import com.example.kotlincalendar.database.AppDatabase
-import com.example.kotlincalendar.database.UserCalendar
+import com.example.kotlincalendar.Entity.UserCalendar
 import com.example.kotlincalendar.databinding.ActivityCalendarScheduleAddBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
