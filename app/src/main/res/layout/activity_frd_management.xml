@@ -11,6 +11,9 @@
         android:id="@+id/Frd_Tab"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        app:tabSelectedTextColor="#C5E8FF"
+        app:tabIndicatorColor="#C5E8FF"
+        app:tabTextAppearance="@style/CustomTabFont"
         />
 
     <androidx.viewpager2.widget.ViewPager2
