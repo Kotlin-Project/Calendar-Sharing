@@ -1,11 +1,11 @@
-package com.example.kotlincalendar.Calendar
+package com.example.kotlincalendar.FriendCalendar
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kotlincalendar.Calendar.Calendar_Schedule_Adapter
 import com.example.kotlincalendar.database.AppDatabase
-import com.example.kotlincalendar.databinding.ActivityCalendarScheduleManagementBinding
+import com.example.kotlincalendar.databinding.ActivityFriendScheduleManagementBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -15,15 +15,15 @@ import java.time.ZoneId
 import java.util.Date
 import java.util.Locale
 
-private var mBinding: ActivityCalendarScheduleManagementBinding? = null
+private lateinit var scheduleAdapter: FriendScheduleAdapter
+
+private var mBinding: ActivityFriendScheduleManagementBinding? = null
 private val binding get() = mBinding!!
 
-class Calendar_Schedule_management : AppCompatActivity() {
-    private lateinit var scheduleAdapter: Calendar_Schedule_Adapter
-    //private lateinit var userCalendarDao: UserCalendarDao
+class FriendScheduleManagement : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mBinding = ActivityCalendarScheduleManagementBinding.inflate(layoutInflater);
+        mBinding = ActivityFriendScheduleManagementBinding.inflate(layoutInflater);
         setContentView(binding.root)
         var db = AppDatabase.getInstance(this)
 
@@ -36,23 +36,13 @@ class Calendar_Schedule_management : AppCompatActivity() {
         val formattedDate = dateFormatter.format(selectedDate)
 
         //Rayout연결
-        val select_Date=binding.selectedDateSchedule
-        val add_btn=binding.plusBtnSchedule
+        val select_Date= binding.selectedDateSchedule
         val schedule_List=binding.scheduleList
         select_Date.text=formattedDate
 
-        //-----구현-----
-        //일정 추가 액티비티로 이동
-        add_btn.setOnClickListener{
-            val intent = Intent(this, Calendar_Schedule_Add::class.java)
-            intent.putExtra("selected_Date",selectedDateMillis)
-            intent.putExtra("user_Email", userEmail)
-            startActivity(intent)
-        }
-
         //Adapter초기화 및 Adapter연결
-        scheduleAdapter = Calendar_Schedule_Adapter(emptyList())
-        schedule_List.layoutManager=LinearLayoutManager(this)
+        scheduleAdapter = FriendScheduleAdapter(emptyList())
+        schedule_List.layoutManager= LinearLayoutManager(this)
         schedule_List.adapter = scheduleAdapter
         GlobalScope.launch(Dispatchers.IO) {
             var scheduleList_=db!!.userCalendarDao().getScheduleForUser(userEmail,localDate)

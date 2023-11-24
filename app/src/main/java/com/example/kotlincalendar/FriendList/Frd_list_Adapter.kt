@@ -1,6 +1,7 @@
 package com.example.kotlincalendar.FriendList
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlincalendar.database.AppDatabase
 import com.example.kotlincalendar.Entity.FriendList
 import com.example.kotlincalendar.Entity.User
+import com.example.kotlincalendar.FriendCalendar.FriendCalendarMain
 import com.example.kotlincalendar.databinding.ListFriendItemBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -27,7 +29,6 @@ class Frd_list_Adapter(
         db = AppDatabase.getInstance(context)!!
     }
 
-
     //레이아웃 연결
     inner class FrdViewHolder(private val binding: ListFriendItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -37,6 +38,17 @@ class Frd_list_Adapter(
         val item_delete_btn = binding.accBtn
 
         init {
+            itemView.setOnClickListener {
+                val currentFriend = friendList[absoluteAdapterPosition]
+                val friendEmail = if (currentFriend.User1 == userEmail) currentFriend.User2 else currentFriend.User1
+
+                val intent = Intent(context, FriendCalendarMain::class.java)
+                intent.putExtra("friend_email", friendEmail)
+                intent.putExtra("user_email",userEmail)
+                context.startActivity(intent)
+            }
+
+            //친구 삭제
             item_delete_btn.setOnClickListener {
                 val position = absoluteAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
