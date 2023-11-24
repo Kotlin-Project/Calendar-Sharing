@@ -12,17 +12,25 @@
         android:theme="@style/Theme.KotlinCalendar"
         tools:targetApi="31">
         <activity
+            android:name=".FriendCalendar.FriendDetailSchedule"
+            android:exported="false" />
+        <activity
+            android:name=".FriendCalendar.FriendScheduleManagement"
+            android:exported="false" />
+        <activity
+            android:name=".FriendCalendar.FriendCalendarMain"
+            android:exported="false" />
+        <activity
             android:name=".FriendList.Frd_management"
             android:exported="false" />
         <activity
             android:name=".my_page"
-            android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".FriendList.Frdlist_main"-->
-<!--            android:exported="false" />-->
-<!--        <activity-->
-<!--            android:name=".Navigation_Drawer.Navigation_Main"-->
-<!--            android:exported="false" />-->
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".FriendList.Frdlist_main" -->
+        <!-- android:exported="false" /> -->
+        <!-- <activity -->
+        <!-- android:name=".Navigation_Drawer.Navigation_Main" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".Calendar.Calendar_Detail_Schedule"
             android:exported="false" />
@@ -47,13 +55,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainPage"
-            android:exported="true" />
-        <activity
-            android:name=".Friend_list"
-            android:exported="true"
-            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".MainActivity"
             android:exported="true" />

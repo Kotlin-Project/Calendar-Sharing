@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DDDDDD"
-    tools:context=".Calendar.Calendar_Detail_Schedule"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".FriendCalendar.FriendDetailSchedule">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -210,58 +209,5 @@
             android:paddingStart="10dp"
             android:text="메모"
             android:textSize="20dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="110"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/editBtn"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1.5"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/icon_edit" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="수정"
-                android:layout_marginTop="4dp"
-                android:gravity="center"
-                android:textSize="14dp"
-                android:fontFamily="@font/a1009_2"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/deleteBtn"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1.5"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/icon_delete" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="삭제"
-                android:layout_marginTop="4dp"
-                android:gravity="center"
-                android:textSize="14dp"
-                android:fontFamily="@font/a1009_2"/>
-        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

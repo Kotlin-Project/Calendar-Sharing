@@ -35,7 +35,7 @@
                 android:layout_marginLeft="45dp"
                 android:layout_marginTop="18dp"
                 android:fontFamily="@font/a1009_2"
-                android:text="김준빈님의 캘린더"
+                android:text="User님의 캘린더"
                 android:textColor="@color/black"
                 android:textSize="26dp" />
         </LinearLayout>

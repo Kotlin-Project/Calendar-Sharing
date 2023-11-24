@@ -1,24 +1,24 @@
-package com.example.kotlincalendar.Calendar
+package com.example.kotlincalendar.FriendCalendar
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import com.example.kotlincalendar.database.AppDatabase
-import com.example.kotlincalendar.databinding.ActivityCalendarDetailScheduleBinding
+import com.example.kotlincalendar.databinding.ActivityFriendDetailScheduleBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-private var mBinding: ActivityCalendarDetailScheduleBinding? = null
+private var mBinding: ActivityFriendDetailScheduleBinding? = null
 private val binding get() = mBinding!!
 private var db: AppDatabase? = null
 
-class Calendar_Detail_Schedule : AppCompatActivity() {
+class FriendDetailSchedule : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mBinding = ActivityCalendarDetailScheduleBinding.inflate(layoutInflater);
+        mBinding = ActivityFriendDetailScheduleBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         db = AppDatabase.getInstance(this)
         val scheduleId = intent.getIntExtra("scheduleId", -1)
 
@@ -27,8 +27,6 @@ class Calendar_Detail_Schedule : AppCompatActivity() {
         val startTimeLocal=binding.starTextBtnDetail
         val finshTimeLocal=binding.finshTextBtnDetail
         val memoText=binding.memoTextDetail
-        val editBtn=binding.editBtn
-        val deleteBtn=binding.deleteBtn
 
         GlobalScope.launch(Dispatchers.IO) {
             val schedule = db?.userCalendarDao()!!.getCalendarItemById(scheduleId)
@@ -41,16 +39,5 @@ class Calendar_Detail_Schedule : AppCompatActivity() {
                 memoText.text=selectedSchedule.Schedule_Memo
             }
         }
-        deleteBtn.setOnClickListener {
-            GlobalScope.launch(Dispatchers.IO) {
-                val schedule = db?.userCalendarDao()!!.getCalendarItemById(scheduleId)
-                db?.userCalendarDao()!!.deleteSchedule(schedule[0])
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(this@Calendar_Detail_Schedule, "삭제완료", Toast.LENGTH_SHORT).show()
-                    finish()
-                }
-            }
-        }
-
     }
 }
