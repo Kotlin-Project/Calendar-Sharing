@@ -164,14 +164,14 @@
                 android:layout_marginVertical="3dp"
                 android:background="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/memo_detail"
+                app:layout_constraintEnd_toStartOf="@+id/memo"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="7dp"
                 tools:layout_editor_absoluteY="25dp" />
 
             <TextView
-                android:id="@+id/memo_detail"
+                android:id="@+id/memo"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
@@ -196,7 +196,7 @@
                 android:background="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/memo_detail"
+                app:layout_constraintStart_toEndOf="@+id/memo"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="280dp"
                 tools:layout_editor_absoluteY="24dp" />

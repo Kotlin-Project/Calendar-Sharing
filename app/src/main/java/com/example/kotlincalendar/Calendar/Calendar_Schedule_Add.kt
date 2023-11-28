@@ -18,6 +18,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.time.LocalTime
 import java.time.ZoneId
 import java.util.Calendar
@@ -100,6 +101,8 @@ class Calendar_Schedule_Add : AppCompatActivity() {
             val SelectStartTime=start_Text_Btn.text.toString()
             val SelectFinshTime=finsh_Text_Btn.text.toString()
             val alarm_=clockSpinner.selectedItem.toString()
+
+
 
             //시간을 LocalTime으로 변환
             val selectedStartTime_ = if (SelectStartTime!="시작 시간") {

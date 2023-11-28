@@ -12,11 +12,11 @@ data class UserCalendar(
     val Schedule_ID:Int,
     @ForeignKey(entity=User::class, parentColumns = ["Email"], childColumns = ["Calendar_UserEmail"])
     val Calendar_UserEmail:String?,
-    val Schedule_Title:String,
-    val Schedule_Memo:String,
-    val Schedule_Color:String,
-    val Schedule_LocalDate: LocalDate,
-    val Schedule_Start: LocalTime,
-    val Schedule_End: LocalTime,
-    val alarm: String,
+    var Schedule_Title:String,
+    var Schedule_Memo:String,
+    var Schedule_Color:String,
+    var Schedule_LocalDate: LocalDate,
+    var Schedule_Start: LocalTime,
+    var Schedule_End: LocalTime,
+    var alarm: String,
 )
