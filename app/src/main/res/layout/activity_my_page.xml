@@ -47,7 +47,7 @@
                 android:layout_height="match_parent">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/circle_iv"
+                    android:id="@+id/userProfile"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     android:layout_gravity="center"
@@ -65,7 +65,7 @@
                     android:layout_marginTop="14dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/circle_iv">
+                    app:layout_constraintTop_toBottomOf="@+id/userProfile">
 
                     <View
                         android:layout_width="40dp"

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:minWidth="300dp"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".dialog_status">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/a1009_2"
+        android:gravity="center_horizontal"
+        android:padding="10dp"
+        android:text="한줄소개 변경"
+        android:textSize="20dp"/>
+
+    <EditText
+        android:id="@+id/statusEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/a1009_2"
+        android:gravity="center"
+        android:hint="변경할 한줄소개 입력"
+        android:textSize="20dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <android.widget.Button
+            android:id="@+id/backBtn"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginEnd="7dp"
+            android:layout_weight="1"
+            android:text="취소"
+            android:textSize="16dp"
+            android:textColor="#000000"
+            android:fontFamily="@font/a1009_2"
+            android:background="@drawable/main_page_btn"
+            android:padding="2dp"/>
+
+        <android.widget.Button
+            android:id="@+id/conformBtn"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:text="변경"
+            android:textColor="#000000"
+            android:textSize="16dp"
+            android:fontFamily="@font/a1009_2"
+            android:background="@drawable/main_page_btn"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

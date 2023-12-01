@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import com.bumptech.glide.Glide
 import com.example.kotlincalendar.Entity.User
 import com.example.kotlincalendar.database.AppDatabase
 import com.example.kotlincalendar.databinding.ListFriendApplyItemBinding
@@ -41,7 +42,10 @@ class FrdView_apply_Adapter(
         val acc_btn=binding.accBtn
 
         val frd = userList[position]
-        icon.setImageResource(frd.Profile_img)
+//        icon.setImageResource(frd.Profile_img)
+        Glide.with(context)
+            .load(frd.Profile_img)
+            .into(icon)
         name.text = frd.Name
         title.text = frd.SubTitle
 

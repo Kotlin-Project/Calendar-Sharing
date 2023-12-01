@@ -4,11 +4,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Gallery
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.databinding.adapters.ViewGroupBindingAdapter
 import androidx.drawerlayout.widget.DrawerLayout
+import com.bumptech.glide.Glide
 import com.example.kotlincalendar.Calendar.CalendarMain
 import com.example.kotlincalendar.FriendList.Frd_management
 import com.example.kotlincalendar.database.AppDatabase
@@ -20,12 +23,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.w3c.dom.Text
 import java.util.jar.Attributes.Name
 
 class my_page : AppCompatActivity() {
     private lateinit var binding: ActivityMyPageBinding
     private lateinit var drawerLayout: DrawerLayout
-
+    private val GALLERY = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMyPageBinding.inflate(layoutInflater);
@@ -42,6 +46,7 @@ class my_page : AppCompatActivity() {
         val userPassReView = binding.userPasswdRe
         val userBirthView = binding.userBirth
         val userPhoneView = binding.userPhone
+        val userProfileView = binding.userProfile
 
         //회원 정보 데이터 => editText
         CoroutineScope(Dispatchers.IO).launch {
@@ -54,6 +59,7 @@ class my_page : AppCompatActivity() {
                 val passReText = userDataList.Password.toString()
                 val birthText = userDataList.brith_date.toString()
                 val phoneText = userDataList.PhoneNum.toString()
+                val userProfileData = userDataList.Profile_img
 
                 userNameView.setText(nameText)
                 userEmailView.setText(emailText)
@@ -61,8 +67,17 @@ class my_page : AppCompatActivity() {
                 userPassReView.setText(passReText)
                 userBirthView.setText(birthText)
                 userPhoneView.setText(phoneText)
+
+                Glide.with(this@my_page)
+                    .load(userProfileData)
+                    .into(userProfileView)
             }
         }
+
+        userProfileView.setOnClickListener {
+           //이미지를 클릭하면 갤러리로 이동
+        }
+
         //햄버거 메뉴
         drawerLayout = findViewById(R.id.drawer_layout)
         val navigationView = binding.navigationView
@@ -70,11 +85,25 @@ class my_page : AppCompatActivity() {
 
         val headerView = navigationView.getHeaderView(0)
         val userNameTextView = headerView.findViewById<TextView>(R.id.user_name_header)
+        val statusTextView = headerView.findViewById<TextView>(R.id.statusText)
+        val userProfileImg = headerView.findViewById<ImageView>(R.id.userProfile)
 
         CoroutineScope(Dispatchers.IO).launch {
-            val userName = db!!.userDao().getUserNameByEmail(getUserEmail)
-            withContext(Dispatchers.Main){
-                userNameTextView.text ="${userName}"
+            val userName = db?.userDao()?.getUserId(getUserEmail)
+            if (userName != null && userName.isNotEmpty()) {
+                withContext(Dispatchers.Main) {
+                    val userDataList = userName[0]
+                    val userNameData = userDataList.Name
+                    val userStatusData = userDataList.SubTitle
+                    val userProfileData = userDataList.Profile_img
+
+                    userNameTextView.text = userNameData
+                    statusTextView.text = userStatusData
+                    Glide.with(this@my_page)
+                        .load(userProfileData)
+                        .into(userProfileImg)
+
+                }
             }
         }
 

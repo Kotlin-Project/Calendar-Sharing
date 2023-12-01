@@ -41,4 +41,10 @@ interface UserDao {
 
     @Query("SELECT Name FROM User WHERE Email = :userEmail")
     fun getUserNameByEmail(userEmail: String?): String?
+
+    @Query("SELECT Name FROM User WHERE SubTitle = :userStatus")
+    fun getUserSubTitle(userStatus: String?): String?
+
+    @Query("UPDATE User SET SubTitle = :newStatus WHERE Email = :statusUserEmail")
+    fun updateStatus(statusUserEmail: String, newStatus: String)
 }
