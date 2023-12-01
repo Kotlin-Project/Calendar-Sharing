@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.example.kotlincalendar.database.AppDatabase
 import com.example.kotlincalendar.Entity.FriendList
 import com.example.kotlincalendar.databinding.ListFriendItemBinding
@@ -49,7 +50,9 @@ class FrdViewAdapter(
             val frdUser=db?.userDao()?.getUserByEmail(friendEmail)
             withContext(Dispatchers.Main){
                 if(frdUser!=null) {
-                    icon.setImageResource(frdUser.Profile_img)
+                    Glide.with(context)
+                        .load(frdUser.Profile_img)
+                        .into(icon)
                     name.text=frdUser.Name
                     title.text=frdUser.SubTitle
                 }

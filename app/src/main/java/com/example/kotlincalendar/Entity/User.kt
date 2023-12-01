@@ -11,7 +11,7 @@ data class User(
     val Name:String,
     val PhoneNum:String,
     val brith_date:String,
-    val Profile_img:Int,
+    val Profile_img:String,
     //val Profile_img: Bitmap?=null,
     val SubTitle:String,
 )
