@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.kotlincalendar.database.AppDatabase
 import com.example.kotlincalendar.Entity.FriendAdd
 import com.example.kotlincalendar.Entity.FriendList
@@ -61,7 +62,9 @@ class Frd_acclist_Adapter(val context: Context,
         }
         //ViewHolder
         fun bind(frdUser: User){
-            item_icon.setImageResource(frdUser.Profile_img)
+            Glide.with(context)
+                .load(frdUser.Profile_img)
+                .into(item_icon)
             item_name_.text = frdUser.Name
             item_title.text = frdUser.SubTitle
         }

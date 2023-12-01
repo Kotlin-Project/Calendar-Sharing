@@ -1,8 +1,12 @@
 package com.example.kotlincalendar.Calendar
 
+import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -10,12 +14,15 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.kotlincalendar.FriendList.Frd_management
 import com.example.kotlincalendar.Login
 import com.example.kotlincalendar.R
+import com.example.kotlincalendar.ShareCalendar.ShareCalendarListPage
 import com.example.kotlincalendar.database.AppDatabase
 import com.example.kotlincalendar.databinding.ActivityCalendarBinding
 import com.example.kotlincalendar.my_page
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -41,13 +48,46 @@ class CalendarMain : AppCompatActivity() {
         val nextbtn=binding.nextBtn
         val menubtn=binding.menuBtnCalendar
 
-        //햄버거 메뉴
+//햄버거 메뉴
         drawerLayout = findViewById(R.id.drawer_layout)
         val navigationView = binding.navigationView
         navigationView.inflateHeaderView(R.layout.navigation_header) // 헤더 레이아웃 설정
 
         val headerView = navigationView.getHeaderView(0)
         val userNameTextView = headerView.findViewById<TextView>(R.id.user_name_header)
+        val statusTextView = headerView.findViewById<TextView>(R.id.statusText)
+        val userProfileImg = headerView.findViewById<ImageView>(R.id.userProfile)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val userDataDB = db?.userDao()?.getUserId(userEmail)
+
+            // Check if userDataDB is not null and contains at least one item
+            if (userDataDB != null && userDataDB.isNotEmpty()) {
+                withContext(Dispatchers.Main) {
+                    val userDataList = userDataDB[0]
+                    val userNameData = userDataList.Name
+                    val userStatusData = userDataList.SubTitle
+                    val userProfileData = userDataList.Profile_img
+
+                    userNameTextView.text = userNameData
+                    statusTextView.text = userStatusData
+
+                    //Log.d("UserData","Profile_img: $userProfileData")
+
+                    // Use the correct activity reference (replace YourCalendarMainActivity with the actual name of your activity)
+                    Glide.with(this@CalendarMain)
+                        .load(userProfileData)
+                        .into(userProfileImg)
+                }
+            } else {
+                // Handle the case where userDataDB is null or empty
+                // For example, set default values or show an error message
+            }
+        }
+
+        statusTextView.setOnClickListener {
+            showCustomDialog(this)
+        }
 
         //로그아웃 기능
         val logoutBtn = headerView.findViewById<Button>(R.id.logout_Btn)
@@ -71,6 +111,9 @@ class CalendarMain : AppCompatActivity() {
                     true
                 }
                 R.id.menu_share_Calendar -> {
+                    val intent=Intent(this,ShareCalendarListPage::class.java)
+                    intent.putExtra("user_email",userEmail)
+                    startActivity(intent)
                     true
                 }
                 R.id.menu_friend -> {
@@ -136,8 +179,72 @@ class CalendarMain : AppCompatActivity() {
         }
     }
 
+
     //DateTimeFormatter 클래스를 사용하여 Date정보를 원하는 형식으로 정의
     //date.format = 날짜를 형식화한 문자열로 반환
+    private fun showCustomDialog(context : Context) {
+        val statusDialog = Dialog(context)
+        statusDialog.setContentView(R.layout.dialog_status)
+        val statusEditText =  statusDialog.findViewById<EditText>(R.id.statusEditText)
+        val dialogBackBtn = statusDialog.findViewById<Button>(R.id.backBtn)
+        val dialogChangeBtn = statusDialog.findViewById<Button>(R.id.conformBtn)
+        var dialogDB = AppDatabase.getInstance(this)
+        val statusUserEmail = intent.getStringExtra("user_email")
+        CoroutineScope(Dispatchers.IO).launch {
+            val userStatusDB = dialogDB?.userDao()!!.getUserId(statusUserEmail)
+            withContext(Dispatchers.Main) {
+                val userDB = userStatusDB[0]
+                val statusDialog = userDB.SubTitle
+
+                statusEditText.setText(statusDialog)
+            }
+        }
+
+        dialogBackBtn.setOnClickListener {
+            statusDialog.dismiss()
+        }
+
+        dialogChangeBtn.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                val userStatusDB = dialogDB?.userDao()!!.getUserId(statusUserEmail)
+                withContext(Dispatchers.Main) {
+                    val userDB = userStatusDB[0]
+                    val newStatus = statusEditText.text.toString()
+                    val updateResult = updateUserStatus(userDB.Email, newStatus)
+
+                    if(updateResult) {
+                        statusDialog.dismiss()
+                        //새로고침..?
+                        finish()
+                        overridePendingTransition(0, 0)
+                        val intent = getIntent()
+                        startActivity(intent)
+                        overridePendingTransition(0, 0)
+                    } else {
+                        showToast("변경 실패")
+                    }
+                }
+            }
+        }
+        statusDialog.show()
+    }
+    private fun updateUserStatus(statusUserEmail: String, newStatus: String): Boolean{
+        return try {
+            var dialogDB = AppDatabase.getInstance(this)
+            CoroutineScope(Dispatchers.IO).launch {
+                dialogDB?.userDao()?.updateStatus(statusUserEmail, newStatus)
+            }
+            true // 변경 성공
+        } catch (e: Exception) {
+            false // 변경 실패
+        }
+    }
+
+    private fun showToast(message: String) {
+        runOnUiThread {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        }
+    }
     private fun monthYearFromDate(calendar: Calendar): String{
         var year=calendar.get(Calendar.YEAR)
         var month=calendar.get(Calendar.MONTH)+1

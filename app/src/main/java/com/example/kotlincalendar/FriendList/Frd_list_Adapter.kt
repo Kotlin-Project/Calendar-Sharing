@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.kotlincalendar.database.AppDatabase
 import com.example.kotlincalendar.Entity.FriendList
 import com.example.kotlincalendar.Entity.User
@@ -65,7 +66,9 @@ class Frd_list_Adapter(
         }
         //ViewHolder에 User에 있는 데이터 넣기
         fun bind(frdUser: User){
-            item_icon.setImageResource(frdUser.Profile_img)
+            Glide.with(context)
+                .load(frdUser.Profile_img)
+                .into(item_icon)
             item_name_.text = frdUser.Name
             item_title.text = frdUser.SubTitle
         }
