@@ -17,7 +17,7 @@ data class ShareCalendarSchedule(
         onUpdate = ForeignKey.CASCADE,
         onDelete = ForeignKey.CASCADE)
     @Index("shareCalendarId")*/
-    val shareCalendarId: Long,
+    val shareCalendarId: String,
     @ForeignKey(entity = User::class, parentColumns = ["Email"], childColumns = ["userEmail"])
     val userEmail: String,
     var shareScheduleTitle: String,

@@ -1,6 +1,7 @@
 package com.example.kotlincalendar.ShareCalendar
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,13 +35,24 @@ class ShareCalendarListAdapter(
         private val calendarCategory: TextView = itemView.findViewById(R.id.calendarCategory)
         private val calendarImage:ImageView=itemView.findViewById(R.id.calendarImage)
 
+        // 아이템 클릭 리스너 설정
+        init {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val clickedItem = calendarList[position]
+                    val intent = Intent(context, ShareCalendarMain::class.java)
+                    intent.putExtra("shareCalendarId", clickedItem.shareCalendarId)
+                    intent.putExtra("userEmail",userEmail)
+                    context.startActivity(intent)
+                }
+            }
+        }
+
         fun bind(calendar: ShareCalendar) {
             calendarImage.setImageResource(calendar.shareCalendarImage)
             calendarTitle.text=calendar.shareCalendarTitle
             calendarCategory.text=calendar.shareCalendarCategory
-            //calendarTitle.text = calendar.title
-            //calendarCategory.text = calendar.category
-            // 여기서 이미지를 로드하거나 다른 필요한 작업을 수행할 수 있습니다.
         }
     }
 }

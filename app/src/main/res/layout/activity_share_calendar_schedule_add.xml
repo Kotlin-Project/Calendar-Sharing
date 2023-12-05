@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Calendar.Calendar_Schedule_Add">
+    tools:context=".ShareCalendar.ShareCalendarScheduleAdd">
 
     <TextView
         android:id="@+id/selected_Date_Add"
@@ -19,7 +19,7 @@
         android:textSize="30dp" />
 
     <EditText
-        android:id="@+id/title_Add"
+        android:id="@+id/shareTitle"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginTop="10dp"
@@ -57,7 +57,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"/>
             <TextView
-                android:id="@+id/star_text_btn_Add"
+                android:id="@+id/starTextBtn"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/a1009_2"
@@ -74,7 +74,7 @@
                 android:textColor="@color/black"
                 android:textSize="15dp" />
             <TextView
-                android:id="@+id/finsh_text_btn_Add"
+                android:id="@+id/finshTextBtn"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/a1009_2"
@@ -97,7 +97,7 @@
         android:background="#c0c0c0" />
 
     <EditText
-        android:id="@+id/memo_EditText_Add"
+        android:id="@+id/shareMemo"
         android:layout_width="match_parent"
         android:layout_height="67dp"
         android:drawableStart="@drawable/icon_memo_size"
@@ -163,7 +163,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="match_parent"
         android:layout_marginTop="100dp"
         android:orientation="horizontal">
         <TextView
@@ -172,12 +172,14 @@
             android:layout_weight="1"/>
 
         <android.widget.Button
-            android:id="@+id/cancel_btn_scadd"
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="match_parent"
+            android:id="@+id/cancelBtn"
+            android:layout_width="140dp"
+            android:layout_weight="0"
+            android:layout_height="50dp"
             android:background="@drawable/main_page_cancle"
             android:fontFamily="@font/a1009_2"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="10dp"
             android:text="취소"
             android:textSize="15dp" />
         <TextView
@@ -186,12 +188,14 @@
             android:layout_weight="1"/>
 
         <android.widget.Button
-            android:id="@+id/save_btn_scadd"
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="match_parent"
+            android:id="@+id/saveBtn"
+            android:layout_width="140dp"
+            android:layout_weight="0"
+            android:layout_height="50dp"
             android:background="@drawable/main_page_btn"
             android:fontFamily="@font/a1009_2"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="10dp"
             android:text="저장"
             android:textSize="15dp" />
 
