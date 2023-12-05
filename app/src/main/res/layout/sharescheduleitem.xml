@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/startTime_scitem"
+            android:id="@+id/startTime"
             android:layout_width="60dp"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -20,7 +20,7 @@
             android:textSize="13dp" />
 
         <TextView
-            android:id="@+id/finsgTime_scitem"
+            android:id="@+id/finshTime"
             android:layout_width="60dp"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -33,37 +33,51 @@
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/Color_scitem"
+        android:id="@+id/selectedColor"
         android:layout_width="10dp"
         android:layout_height="55dp"
         android:layout_gravity="center"
         app:cardBackgroundColor="#FF0000"
         app:cardCornerRadius="10dp"
         />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_weight="5"
+        android:orientation="vertical">
         <TextView
-            android:id="@+id/Title_scitem"
-            android:layout_width="0dp"
-            android:layout_weight="5"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="9dp"
+            android:id="@+id/scheduleTitle"
+            android:layout_width="match_parent"
+            android:layout_weight="1.5"
+            android:layout_height="0dp"
             android:fontFamily="@font/a1009_2"
             android:gravity="center_vertical"
+            android:textColor="@color/black"
             android:text="제목"
             android:textSize="20dp" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/scheduleWriteUser"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:src="@drawable/icon_clock_size"/>
+            android:text="작성자"/>
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/alarmImage"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/icon_clock_size"/>
+
+</LinearLayout>
 
 
 </LinearLayout>

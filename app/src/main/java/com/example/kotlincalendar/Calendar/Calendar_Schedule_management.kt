@@ -15,8 +15,9 @@ import java.time.ZoneId
 import java.util.Date
 import java.util.Locale
 
-private var mBinding: ActivityCalendarScheduleManagementBinding? = null
+
 private val binding get() = mBinding!!
+private var mBinding: ActivityCalendarScheduleManagementBinding? = null
 private lateinit var db: AppDatabase
 class Calendar_Schedule_management : AppCompatActivity() {
     private lateinit var scheduleAdapter: Calendar_Schedule_Adapter

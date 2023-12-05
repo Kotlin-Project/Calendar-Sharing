@@ -15,6 +15,11 @@ interface ShareCalendarDao {
 
     @Delete
     fun deleteShareCalendar(shareCalendar: ShareCalendar)*/
+    @Query("SELECT * FROM ShareCalendar WHERE shareCalendarId =:shareCalendarId")
+    fun getShareCalendar(shareCalendarId: String): ShareCalendar
+
+    @Query("SELECT Name FROM User WHERE Email = :userEmail")
+    fun getUserNameByEmail(userEmail: String?): String?
 
     @Insert
     fun insertShareCalendar(shareCalendar: ShareCalendar):Long

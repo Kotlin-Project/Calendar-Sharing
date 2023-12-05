@@ -43,10 +43,10 @@ class ShareCalendarListPage : AppCompatActivity() {
         var db= AppDatabase.getInstance(this)
         GlobalScope.launch(Dispatchers.IO) {
             val shareCalendarIdList = db!!.shareCalendarUserDao().getShareCalendarIdsForUser(userEmail)
-            Log.d("ShareCalendarCreate", "shareCalendarIdList--------ID: $shareCalendarIdList")
+            //Log.d("ShareCalendarCreate", "shareCalendarIdList--------ID: $shareCalendarIdList")
             val shareCalendarList = db.shareCalendarDao().getShareCalendarsByIds(shareCalendarIdList)
-            Log.d("ShareCalendarCreate", "shareCalendarIdList--------ID: $shareCalendarList")
-            Log.d("ShareCalendarCreate", "shareCalendarIdList--------ID: $userEmail")
+            //Log.d("ShareCalendarCreate", "shareCalendarIdList--------ID: $shareCalendarList")
+            //Log.d("ShareCalendarCreate", "shareCalendarIdList--------ID: $userEmail")
             withContext(Dispatchers.Main) {
                 shareCalendarListAdapter = ShareCalendarListAdapter(this@ShareCalendarListPage, shareCalendarList, userEmail)
                 binding.ShareCalendarRecyclerView.adapter = shareCalendarListAdapter
