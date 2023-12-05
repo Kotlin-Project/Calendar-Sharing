@@ -45,4 +45,13 @@ interface UserDao {
     @Query("UPDATE User SET SubTitle = :newStatus WHERE Email = :statusUserEmail")
     fun updateStatus(statusUserEmail: String, newStatus: String)
 
+//    @Query("UPDATE User SET Name = :newUser, Password = :newPass, PhoneNum = :newPhone, brith_date = :newBrith, Profile_img = :newProfile WHERE Email = :userEmail")
+//    fun updateUser(
+//        newUser: String,
+//        newPass: String,
+//        newPhone: String,
+//        newBrith: String,
+//        newProfile: String,
+//        userEmail: String
+//    )
 }

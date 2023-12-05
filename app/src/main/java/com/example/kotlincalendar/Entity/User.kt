@@ -6,12 +6,12 @@ import androidx.room.PrimaryKey
 @Entity
 data class User(
     @PrimaryKey
-    val Email:String,
-    val Password:String,
-    val Name:String,
-    val PhoneNum:String,
-    val brith_date:String,
-    val Profile_img:String,
+    var Email:String,
+    var Password:String,
+    var Name:String,
+    var PhoneNum:String,
+    var brith_date:String,
+    var Profile_img:String,
     //val Profile_img: Bitmap?=null,
-    val SubTitle:String,
+    var SubTitle:String,
 )
