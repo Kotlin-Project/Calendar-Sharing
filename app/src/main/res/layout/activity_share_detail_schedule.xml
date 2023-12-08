@@ -1,9 +1,223 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ShareCalendar.ShareDetailSchedule">
+    android:background="#DDDDDD"
+    tools:context=".ShareCalendar.ShareDetailSchedule"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="11"
+        android:background="@drawable/rounded_bottom"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/shareDetailTitle"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:fontFamily="@font/a1009_2"
+            android:gravity="center"
+            android:text="일정 제목"
+            android:textSize="30dp" />
+        <TextView
+            android:id="@+id/shareWriteUser"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="작성자 이메일"
+            android:gravity="center"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/view_left"
+                app:layout_constraintTop_toTopOf="@+id/view_left">
+
+                <View
+                    android:id="@+id/view_left"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginVertical="3dp"
+                    android:layout_weight="1"
+                    android:background="@color/black"/>
+                <TextView
+                    android:id="@+id/localDateDetail"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/a1009_2"
+                    android:gravity="center"
+                    android:text="선택날짜"
+                    android:textSize="20dp" />
+
+                <View
+                    android:id="@+id/view_right"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginVertical="3dp"
+                    android:layout_weight="1"
+                    android:background="@color/black" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+
+            <TextView
+                android:id="@+id/starTimeDetail"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="60dp"
+                android:fontFamily="@font/a1009_2"
+                android:gravity="center|right"
+                android:text="08:00"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="~"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/finishTimeDetail"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="60dp"
+                android:fontFamily="@font/a1009_2"
+                android:gravity="center|left"
+                android:text="09:00"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
+
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="3dp"
+            android:background="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toTopOf="@+id/view"
+            app:layout_constraintTop_toTopOf="@+id/view">
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:background="@color/black" />
+
+            <TextView
+                android:id="@+id/memo"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/a1009_2"
+                android:gravity="center"
+                android:text="메모"
+                android:textSize="20dp" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:background="@color/black" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/memoTextDetail"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:fontFamily="@font/a1009_2"
+            android:paddingStart="10dp"
+            android:text="메모"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="110"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/editBtn"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/icon_edit" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="수정"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:textSize="14dp"
+                android:fontFamily="@font/a1009_2"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/deleteBtn"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/icon_delete" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="삭제"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:textSize="14dp"
+                android:fontFamily="@font/a1009_2"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

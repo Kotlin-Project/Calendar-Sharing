@@ -1,14 +1,25 @@
 package com.example.kotlincalendar.ShareCalendar
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.TextView
+import android.widget.Toast
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kotlincalendar.Calendar.CalendarMain
 import com.example.kotlincalendar.Calendar.CalendarUtil
 import com.example.kotlincalendar.Entity.ShareCalendar
+import com.example.kotlincalendar.FriendList.Frd_management
+import com.example.kotlincalendar.Login
+import com.example.kotlincalendar.R
 import com.example.kotlincalendar.database.AppDatabase
 import com.example.kotlincalendar.databinding.ActivityShareCalendarMainBinding
+import com.example.kotlincalendar.my_page
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -26,8 +37,10 @@ class ShareCalendarMain : AppCompatActivity() {
         setContentView(binding.root)
 
         val shareCalendarId=intent.getStringExtra("shareCalendarId")!!
+        val userEmail = intent.getStringExtra("userEmail")
         setTitleView(shareCalendarId)
         setMonthView(shareCalendarId)
+        menuFunction(userEmail)
         //왼쪽버튼 클릭시 현재 날짜에서 -1월
         binding.preBtn.setOnClickListener{
             CalendarUtil.selectedDate.add(Calendar.MONTH,-1)
@@ -37,6 +50,61 @@ class ShareCalendarMain : AppCompatActivity() {
         binding.nextBtn.setOnClickListener{
             CalendarUtil.selectedDate.add(Calendar.MONTH,1)
             setMonthView(shareCalendarId)
+        }
+    }
+    //햄버거 메뉴
+    private fun menuFunction(userEmail:String?){
+        drawerLayout = findViewById(R.id.drawer_layout)
+        var db = AppDatabase.getInstance(this)
+        val navigationView = binding.navigationView
+        navigationView.inflateHeaderView(R.layout.navigation_header) // 헤더 레이아웃 설정
+        val headerView = navigationView.getHeaderView(0)
+        val userNameTextView = headerView.findViewById<TextView>(R.id.user_name_header)
+        GlobalScope.launch(Dispatchers.IO) {
+            val userName =db!!.userDao().getUserNameByEmail(userEmail)
+            withContext(Dispatchers.Main){
+                userNameTextView.text ="${userName}"
+            }
+        }
+
+        //로그아웃 기능
+        val logoutBtn = headerView.findViewById<Button>(R.id.logout_Btn)
+        logoutBtn.setOnClickListener {
+            Toast.makeText(this, "로그아웃 되었습니다", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, Login::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+        }
+
+        binding.menuBtn.setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
+
+        navigationView.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.my_Calendar -> {
+                    val intent = Intent(this, CalendarMain::class.java)
+                    intent.putExtra("user_email", userEmail)
+                    startActivity(intent)
+                    true
+                }
+                R.id.menu_share_Calendar -> {
+                    true
+                }
+                R.id.menu_friend -> {
+                    val intent = Intent(this, Frd_management::class.java)
+                    intent.putExtra("user_email",userEmail)
+                    startActivity(intent)
+                    true
+                }
+                R.id.menu_userChange -> {
+                    val intent = Intent(this, my_page::class.java)
+                    intent.putExtra("user_email", userEmail)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
         }
     }
 
@@ -108,5 +176,10 @@ class ShareCalendarMain : AppCompatActivity() {
             monthCalendar.add(Calendar.DAY_OF_MONTH,1)
         }
         return dayList
+    }
+    override fun onResume() {
+        super.onResume()
+        val shareCalendarId = intent.getStringExtra("shareCalendarId")
+        setMonthView(shareCalendarId)
     }
 }

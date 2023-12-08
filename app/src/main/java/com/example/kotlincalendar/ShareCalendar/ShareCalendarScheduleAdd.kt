@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import android.widget.Toast
 import com.example.kotlincalendar.Entity.ShareCalendarSchedule
 import com.example.kotlincalendar.Entity.UserCalendar
 import com.example.kotlincalendar.R
@@ -117,6 +118,8 @@ class ShareCalendarScheduleAdd : AppCompatActivity() {
             GlobalScope.launch(Dispatchers.IO) {
                 db!!.shareCalendarScheduleDao().insertShareSchedule(newShareSchedule)
             }
+            Toast.makeText(this, "일정 생성", Toast.LENGTH_SHORT).show()
+            finish()
         }
 
     }

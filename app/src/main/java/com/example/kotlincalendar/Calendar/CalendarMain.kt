@@ -275,4 +275,9 @@ class CalendarMain : AppCompatActivity() {
         }
         return dayList
     }
+    override fun onResume() {
+        super.onResume()
+        val userEmail = intent.getStringExtra("user_email")
+        setMonthView(userEmail)
+    }
 }

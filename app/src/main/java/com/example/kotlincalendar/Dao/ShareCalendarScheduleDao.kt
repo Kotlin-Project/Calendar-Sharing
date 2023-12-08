@@ -24,4 +24,7 @@ interface ShareCalendarScheduleDao {
     @Query("SELECT * FROM ShareCalendarSchedule WHERE shareCalendarId = :shareCalendarId AND shareScheduleLocalDate = :selectedDate ORDER BY shareScheduleStart")
     fun getShareScheduleForUser(shareCalendarId: String, selectedDate: LocalDate): List<ShareCalendarSchedule>
 
+    @Query("SELECT * FROM ShareCalendarSchedule WHERE shareScheduleId=:SelectedId")
+    fun getScheduleItemById(SelectedId: Long):List<ShareCalendarSchedule>
+
 }

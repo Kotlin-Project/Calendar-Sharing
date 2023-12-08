@@ -2,6 +2,7 @@ package com.example.kotlincalendar.ShareCalendar
 
 import android.content.Intent
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,20 +24,22 @@ class ShareScheduleAdapter(private var scheduleList: List<ShareCalendarSchedule>
         val startTimeTextView: TextView = itemView.findViewById(R.id.startTime)
         val endTimeTextView: TextView = itemView.findViewById(R.id.finshTime)
         val colorView: View = itemView.findViewById(R.id.selectedColor)
-        val imagealarm: ImageView =itemView.findViewById(R.id.alarmImage)
+        val imageAlarm: ImageView =itemView.findViewById(R.id.alarmImage)
         val writeUser:TextView=itemView.findViewById(R.id.scheduleWriteUser)
-/*        init {
+        init {
             // 아이템 클릭 시 상세 정보 화면으로 이동
             itemView.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val selectedItem = scheduleList[position]
-                    val intent = Intent(itemView.context, Calendar_Detail_Schedule::class.java)
-                    intent.putExtra("scheduleId", selectedItem.Schedule_ID)
+                    val intent = Intent(itemView.context, ShareDetailSchedule::class.java)
+                    val selectedId=selectedItem.shareScheduleId
+                    intent.putExtra("scheduleId", selectedId)
                     itemView.context.startActivity(intent)
+                    Log.d("asdfasdfasdfadfadfadsf", "adfadsf--------ID: $selectedId")
                 }
             }
-        }*/
+        }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.sharescheduleitem, parent, false)
@@ -55,9 +58,9 @@ class ShareScheduleAdapter(private var scheduleList: List<ShareCalendarSchedule>
         holder.colorView.setBackgroundColor(backgroundColor)
 
         if(currentItem.shareAlarm=="설정 하지 않음"){
-            holder.imagealarm.visibility = View.GONE
+            holder.imageAlarm.visibility = View.GONE
         }else{
-            holder.imagealarm.visibility= View.VISIBLE
+            holder.imageAlarm.visibility= View.VISIBLE
         }
     }
 
