@@ -5,11 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kotlincalendar.Calendar.Calendar_Schedule_Adapter
-import com.example.kotlincalendar.Calendar.Calendar_Schedule_Add
-import com.example.kotlincalendar.R
 import com.example.kotlincalendar.database.AppDatabase
-import com.example.kotlincalendar.databinding.ActivityCalendarScheduleManagementBinding
 import com.example.kotlincalendar.databinding.ActivityShareScheduleManagementBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
