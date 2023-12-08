@@ -103,6 +103,14 @@ class ShareCalendarMain : AppCompatActivity() {
                     startActivity(intent)
                     true
                 }
+                R.id.shareCalendarUsers->{
+                    true
+                }
+                R.id.shareCalendarSetting->{
+                    val intent=Intent(this,ShareCalendarSetting::class.java)
+                    startActivity(intent)
+                    true
+                }
                 else -> false
             }
         }
@@ -115,7 +123,7 @@ class ShareCalendarMain : AppCompatActivity() {
             val title = shareCalendar.shareCalendarTitle
             val category = shareCalendar.shareCalendarCategory
             withContext(Dispatchers.Main) {
-                binding.shareCalendarTitle.text=title
+                binding.shareCalendarTitle.text="${title}"
                 binding.shareCalendarCategory.text=category
             }
         }

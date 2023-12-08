@@ -15,6 +15,9 @@
         android:theme="@style/Theme.KotlinCalendar"
         tools:targetApi="31">
         <activity
+            android:name=".ShareCalendar.ShareCalendarSetting"
+            android:exported="false" />
+        <activity
             android:name=".ShareCalendar.ShareScheduleEdit"
             android:exported="false" />
         <activity

@@ -34,6 +34,7 @@ class ShareCalendarListAdapter(
         private val calendarTitle: TextView = itemView.findViewById(R.id.calendarTitle)
         private val calendarCategory: TextView = itemView.findViewById(R.id.calendarCategory)
         private val calendarImage:ImageView=itemView.findViewById(R.id.calendarImage)
+        private val calendarSubTitle:TextView=itemView.findViewById(R.id.calendarSubTitle)
 
         // 아이템 클릭 리스너 설정
         init {
@@ -53,6 +54,7 @@ class ShareCalendarListAdapter(
             calendarImage.setImageResource(calendar.shareCalendarImage)
             calendarTitle.text=calendar.shareCalendarTitle
             calendarCategory.text=calendar.shareCalendarCategory
+            calendarSubTitle.text=calendar.shareCalendarSubTitle
         }
     }
 }

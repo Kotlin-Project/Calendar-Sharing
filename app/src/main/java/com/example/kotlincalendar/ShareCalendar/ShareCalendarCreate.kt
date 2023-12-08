@@ -42,11 +42,13 @@ class ShareCalendarCreate : AppCompatActivity() {
 
         val calendarImage= R.drawable.test
         val calendarTitle=binding.shareCalendarTitle.getText().toString()
+        val calendarSubTitle=binding.shareCalendarSubTitle.getText().toString()
         val calendarCategory = binding.shareCalendarCategory.selectedItem.toString()
         val RandomId=UUID.randomUUID().toString()
         val createCalendar= ShareCalendar(
             shareCalendarId = RandomId,
             shareCalendarTitle = calendarTitle,
+            shareCalendarSubTitle=calendarSubTitle,
             shareCalendarImage = calendarImage,
             shareCalendarCategory = calendarCategory)
         GlobalScope.launch(Dispatchers.IO) {
