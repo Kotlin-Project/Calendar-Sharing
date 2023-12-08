@@ -25,12 +25,11 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="45dp"
-                android:layout_marginTop="18dp"
+                android:gravity="center"
                 android:fontFamily="@font/a1009_2"
                 android:text="공유 캘린더 관리"
                 android:textColor="@color/black"
-                android:textSize="26dp" />
+                android:textSize="18dp" />
             <ImageButton
                 android:id="@+id/shareCalendarAddBtn"
                 android:layout_width="50dp"

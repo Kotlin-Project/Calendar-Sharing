@@ -76,7 +76,29 @@ class ShareScheduleManagement : AppCompatActivity() {
         GlobalScope.launch(Dispatchers.IO) {
             val localDate = Date(selectedDateMillis).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
             val scheduleList = db!!.shareCalendarScheduleDao().getShareScheduleForUser(shareCalendarId, localDate)
-            val wirteUserName=db!!.
+            //val wirteUserName=db!!.
+            withContext(Dispatchers.Main) {
+                scheduleAdapter.submitList(scheduleList)
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // 현재 화면이 다시 보여질 때마다 스케줄을 업데이트합니다.
+        updateScheduleList()
+    }
+
+    // 스케줄 리스트 업데이트 함수
+    private fun updateScheduleList() {
+        val selectedDateMillis = intent.getLongExtra("selectedDate", 0)
+        val userEmail = intent.getStringExtra("user_Email")
+        val shareCalendarId=intent.getStringExtra("shareCalendarId")!!
+
+        GlobalScope.launch(Dispatchers.IO) {
+            val localDate = Date(selectedDateMillis).toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+            val scheduleList = db!!.shareCalendarScheduleDao().getShareScheduleForUser(shareCalendarId, localDate)
+
             withContext(Dispatchers.Main) {
                 scheduleAdapter.submitList(scheduleList)
             }

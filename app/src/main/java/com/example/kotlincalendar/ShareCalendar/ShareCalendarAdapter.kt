@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlincalendar.Calendar.CalendarUtil
+import com.example.kotlincalendar.Calendar.PreviewSchedule_Adapter
 import com.example.kotlincalendar.Entity.ShareCalendarSchedule
 import com.example.kotlincalendar.Entity.UserCalendar
 import com.example.kotlincalendar.R
@@ -92,14 +93,14 @@ class ShareCalendarAdapter(private val shareScheduleList:List<ShareCalendarSched
         }
         //작업중 코드--------------------------------------------------
 
-        /*        val itemDate_ = dayList[position]
+                val preItemDate = dayList[position]
                 // 선택된 날짜에 해당하는 일정 목록을 업데이트합니다.
-                val selectedDateString = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(itemDate_)
-                val filteredScheduleList = scheduleList_.filter { it.Schedule_LocalDate.toString() == selectedDateString }
+                val selectedDateString = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(preItemDate)
+                val filteredScheduleList = shareScheduleList.filter { it.shareScheduleLocalDate.toString() == selectedDateString }
 
-                val previewAdapter = PreviewSchedule_Adapter(filteredScheduleList)
+                val previewAdapter = SharePreViewAdapter(filteredScheduleList)
                 holder.preview.layoutManager = LinearLayoutManager(holder.itemView.context)
-                holder.preview.adapter = previewAdapter*/
+                holder.preview.adapter = previewAdapter
 
 
         //작업중 코드--------------------------------------------------
