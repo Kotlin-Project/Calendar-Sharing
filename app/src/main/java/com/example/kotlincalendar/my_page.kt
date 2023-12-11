@@ -4,9 +4,11 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.database.Cursor
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -23,6 +25,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.File
 
 class my_page : AppCompatActivity() {
     private lateinit var binding: ActivityMyPageBinding
@@ -226,6 +229,7 @@ class my_page : AppCompatActivity() {
         startActivityForResult(intent, 2000)
     }
 
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val userProfileView = binding.userProfile
         super.onActivityResult(requestCode, resultCode, data)
@@ -246,7 +250,8 @@ class my_page : AppCompatActivity() {
                     userProfileView.setImageURI(selectedImageUri)
 
                     // 여기에서 데이터베이스를 업데이트하도록 호출
-                    updateProfileInDatabase(imageUrl)
+                    updateProfileInDatabase(selectedImageUri)
+
                     // You can also use the imageUrl to pass or display elsewhere in your code
                     // For example, you might want to store it in a variable or upload it to a server
                 } else {
@@ -258,17 +263,35 @@ class my_page : AppCompatActivity() {
             }
         }
     }
-
     // 데이터베이스 업데이트를 위한 메서드
-    private fun updateProfileInDatabase(newProfile: String?) {
+    private fun updateProfileInDatabase(selectedImageUri: Uri) {
         var db = AppDatabase.getInstance(this)
         CoroutineScope(Dispatchers.IO).launch {
-            val userEmail = intent.getStringExtra("user_email")// 여기에서 사용자 이메일을 가져오는 코드 추가
+            val userEmail = intent.getStringExtra("user_email")
             if (!userEmail.isNullOrBlank()) {
-                db?.userDao()?.updateProfile(userEmail, newProfile ?: "")
+                // 이미지 URI를 파일 경로로 변환
+                val imagePath: String = getRealPathFromURI(selectedImageUri)
+
+                // 파일 경로를 사용하여 URL 생성
+                val imageUrl = File(imagePath).toURI().toURL().toString()
+
+                // 데이터베이스 업데이트
+                db?.userDao()?.updateProfile(userEmail, imageUrl)
             }
         }
     }
+
+    // 이미지 URI를 파일 경로로 변환하는 함수
+    private fun getRealPathFromURI(contentUri: Uri): String {
+        val proj = arrayOf(MediaStore.Images.Media.DATA)
+        val cursor: Cursor? = contentResolver.query(contentUri, proj, null, null, null)
+        val columnIndex: Int? = cursor?.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+        cursor?.moveToFirst()
+        val filePath: String = cursor?.getString(columnIndex ?: 0) ?: ""
+        cursor?.close()
+        return filePath
+    }
+
 
 
     private fun showPermissionContextPopup() {
