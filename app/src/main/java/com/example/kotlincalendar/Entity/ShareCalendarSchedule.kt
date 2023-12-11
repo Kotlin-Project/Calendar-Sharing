@@ -7,18 +7,15 @@ import androidx.room.PrimaryKey
 import java.time.LocalDate
 import java.time.LocalTime
 
-@Entity
+
+@Entity(foreignKeys = [
+    ForeignKey(entity = ShareCalendar::class, parentColumns = ["shareCalendarId"], childColumns = ["shareCalendarId"], onDelete = ForeignKey.CASCADE),
+    ForeignKey(entity = User::class, parentColumns = ["Email"], childColumns = ["userEmail"])
+])
 data class ShareCalendarSchedule(
     @PrimaryKey(autoGenerate = true)
-    val shareScheduleId: Long,
-/*    @ForeignKey(entity = ShareCalendar::class,
-        parentColumns = ["shareCalendarId"],
-        childColumns = ["shareCalendarId"],
-        onUpdate = ForeignKey.CASCADE,
-        onDelete = ForeignKey.CASCADE)
-    @Index("shareCalendarId")*/
+    val shareScheduleId: Long = 0,
     val shareCalendarId: String,
-    @ForeignKey(entity = User::class, parentColumns = ["Email"], childColumns = ["userEmail"])
     val userEmail: String,
     var shareScheduleTitle: String,
     var shareScheduleMemo: String,

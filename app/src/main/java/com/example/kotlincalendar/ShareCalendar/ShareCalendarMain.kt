@@ -55,6 +55,7 @@ class ShareCalendarMain : AppCompatActivity() {
     //햄버거 메뉴
     private fun menuFunction(userEmail:String?){
         drawerLayout = findViewById(R.id.drawer_layout)
+        val shareCalendarId=intent.getStringExtra("shareCalendarId")!!
         var db = AppDatabase.getInstance(this)
         val navigationView = binding.navigationView
         navigationView.inflateHeaderView(R.layout.navigation_header) // 헤더 레이아웃 설정
@@ -104,10 +105,16 @@ class ShareCalendarMain : AppCompatActivity() {
                     true
                 }
                 R.id.shareCalendarUsers->{
+                    val intent=Intent(this,ShareCalendarUserList::class.java)
+                    intent.putExtra("userEmail",userEmail)
+                    intent.putExtra("shareCalendarId", shareCalendarId)
+                    startActivity(intent)
                     true
                 }
                 R.id.shareCalendarSetting->{
                     val intent=Intent(this,ShareCalendarSetting::class.java)
+                    intent.putExtra("userEmail",userEmail)
+                    intent.putExtra("shareCalendarId", shareCalendarId)
                     startActivity(intent)
                     true
                 }
@@ -187,7 +194,21 @@ class ShareCalendarMain : AppCompatActivity() {
     }
     override fun onResume() {
         super.onResume()
-        val shareCalendarId = intent.getStringExtra("shareCalendarId")
-        setMonthView(shareCalendarId)
+        var db = AppDatabase.getInstance(this)
+        val shareCalendarId = intent.getStringExtra("shareCalendarId")!!
+        val userEmail = intent.getStringExtra("userEmail")!!
+        GlobalScope.launch(Dispatchers.IO){
+            val getCalendarId=db!!.shareCalendarDao().getShareCalendar(shareCalendarId)
+            val getSelectedUser=db.shareCalendarUserDao().selectedUser(shareCalendarId,userEmail)
+
+            withContext(Dispatchers.Main){
+                if(getCalendarId==null)
+                    finish()
+                else if(getSelectedUser==null)
+                    finish()
+                else
+                    setMonthView(shareCalendarId)
+            }
+        }
     }
 }
