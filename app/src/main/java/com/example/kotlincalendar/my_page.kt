@@ -2,6 +2,8 @@ package com.example.kotlincalendar
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
@@ -10,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -19,6 +22,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.bumptech.glide.Glide
 import com.example.kotlincalendar.Calendar.CalendarMain
 import com.example.kotlincalendar.FriendList.Frd_management
+import com.example.kotlincalendar.ShareCalendar.ShareCalendarListPage
 import com.example.kotlincalendar.database.AppDatabase
 import com.example.kotlincalendar.databinding.ActivityMyPageBinding
 import kotlinx.coroutines.CoroutineScope
@@ -87,22 +91,34 @@ class my_page : AppCompatActivity() {
         val userProfileImg = headerView.findViewById<ImageView>(R.id.userProfile)
 
         CoroutineScope(Dispatchers.IO).launch {
-            val userName = db?.userDao()?.getUserId(getUserEmail)
-            if (userName != null && userName.isNotEmpty()) {
+            val userDataDB = db?.userDao()?.getUserId(getUserEmail)
+
+            // Check if userDataDB is not null and contains at least one item
+            if (userDataDB != null && userDataDB.isNotEmpty()) {
                 withContext(Dispatchers.Main) {
-                    val userDataList = userName[0]
+                    val userDataList = userDataDB[0]
                     val userNameData = userDataList.Name
                     val userStatusData = userDataList.SubTitle
                     val userProfileData = userDataList.Profile_img
 
                     userNameTextView.text = userNameData
                     statusTextView.text = userStatusData
+
+                    //Log.d("UserData","Profile_img: $userProfileData")
+
+                    // Use the correct activity reference (replace YourCalendarMainActivity with the actual name of your activity)
                     Glide.with(this@my_page)
                         .load(userProfileData)
                         .into(userProfileImg)
-
                 }
+            } else {
+                // Handle the case where userDataDB is null or empty
+                // For example, set default values or show an error message
             }
+        }
+
+        statusTextView.setOnClickListener {
+            showCustomDialog(this)
         }
 
         //로그아웃 기능
@@ -127,11 +143,14 @@ class my_page : AppCompatActivity() {
                     true
                 }
                 R.id.menu_share_Calendar -> {
+                    val intent=Intent(this, ShareCalendarListPage::class.java)
+                    intent.putExtra("user_email",getUserEmail)
+                    startActivity(intent)
                     true
                 }
                 R.id.menu_friend -> {
                     val intent = Intent(this, Frd_management::class.java)
-                    intent.putExtra("user_email", getUserEmail)
+                    intent.putExtra("user_email",getUserEmail)
                     startActivity(intent)
                     true
                 }
@@ -304,5 +323,69 @@ class my_page : AppCompatActivity() {
             .setNegativeButton("취소하기") { _, _ -> }
             .create()
             .show()
+    }
+
+    private fun showCustomDialog(context : Context) {
+        val statusDialog = Dialog(context)
+        statusDialog.setContentView(R.layout.dialog_status)
+        val statusEditText =  statusDialog.findViewById<EditText>(R.id.statusEditText)
+        val dialogBackBtn = statusDialog.findViewById<Button>(R.id.backBtn)
+        val dialogChangeBtn = statusDialog.findViewById<Button>(R.id.conformBtn)
+        var dialogDB = AppDatabase.getInstance(this)
+        val statusUserEmail = intent.getStringExtra("user_email")
+        CoroutineScope(Dispatchers.IO).launch {
+            val userStatusDB = dialogDB?.userDao()!!.getUserId(statusUserEmail)
+            withContext(Dispatchers.Main) {
+                val userDB = userStatusDB[0]
+                val statusDialog = userDB.SubTitle
+
+                statusEditText.setText(statusDialog)
+            }
+        }
+
+        dialogBackBtn.setOnClickListener {
+            statusDialog.dismiss()
+        }
+
+        dialogChangeBtn.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                val userStatusDB = dialogDB?.userDao()!!.getUserId(statusUserEmail)
+                withContext(Dispatchers.Main) {
+                    val userDB = userStatusDB[0]
+                    val newStatus = statusEditText.text.toString()
+                    val updateResult = updateUserStatus(userDB.Email, newStatus)
+
+                    if(updateResult) {
+                        statusDialog.dismiss()
+                        //새로고침..?
+                        finish()
+                        overridePendingTransition(0, 0)
+                        val intent = getIntent()
+                        startActivity(intent)
+                        overridePendingTransition(0, 0)
+                    } else {
+                        showToast("변경 실패")
+                    }
+                }
+            }
+        }
+        statusDialog.show()
+    }
+    private fun updateUserStatus(statusUserEmail: String, newStatus: String): Boolean{
+        return try {
+            var dialogDB = AppDatabase.getInstance(this)
+            CoroutineScope(Dispatchers.IO).launch {
+                dialogDB?.userDao()?.updateStatus(statusUserEmail, newStatus)
+            }
+            true // 변경 성공
+        } catch (e: Exception) {
+            false // 변경 실패
+        }
+    }
+
+    private fun showToast(message: String) {
+        runOnUiThread {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        }
     }
 }
