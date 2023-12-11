@@ -9,42 +9,70 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="65dp">
+
             <ImageButton
                 android:id="@+id/menuBtnShare"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginLeft="8dp"
                 android:layout_gravity="center"
+                android:layout_marginLeft="8dp"
                 android:background="@color/white"
                 android:src="@drawable/icon_menu_size" />
+
             <TextView
                 android:id="@+id/UserName_camain"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:gravity="center"
+                android:layout_weight="1"
                 android:fontFamily="@font/a1009_2"
+                android:gravity="center"
                 android:text="공유 캘린더 관리"
                 android:textColor="@color/black"
                 android:textSize="18dp" />
+
             <ImageButton
                 android:id="@+id/shareCalendarAddBtn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginRight="8dp"
                 android:layout_gravity="center|right"
+                android:layout_marginRight="8dp"
                 android:background="@color/white"
-                android:src="@drawable/icon_addcalendar_size"/>
+                android:src="@drawable/icon_addcalendar_size" />
         </LinearLayout>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/ShareCalendarRecyclerView"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal" />
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ShareCalendarRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="19"
+                android:orientation="horizontal" />
+
+            <TextView
+                android:id="@+id/joinCalendarBtn"
+                android:layout_width="160dp"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/all_radius_btn"
+                android:fontFamily="@font/a1009_2"
+                android:gravity="center"
+                android:text="캘린더 추가"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
     </LinearLayout>
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"
         android:layout_width="wrap_content"

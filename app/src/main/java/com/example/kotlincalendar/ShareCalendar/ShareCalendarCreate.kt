@@ -40,7 +40,7 @@ class ShareCalendarCreate : AppCompatActivity() {
     private fun createShareCalendar(masterEmail:String){
         var db = AppDatabase.getInstance(this)
 
-        val calendarImage= R.drawable.test
+        val calendarImage= R.drawable.icon_maple
         val calendarTitle=binding.shareCalendarTitle.getText().toString()
         val calendarSubTitle=binding.shareCalendarSubTitle.getText().toString()
         val calendarCategory = binding.shareCalendarCategory.selectedItem.toString()

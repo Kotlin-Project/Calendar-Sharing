@@ -45,13 +45,17 @@ interface UserDao {
     @Query("UPDATE User SET SubTitle = :newStatus WHERE Email = :statusUserEmail")
     fun updateStatus(statusUserEmail: String, newStatus: String)
 
-//    @Query("UPDATE User SET Name = :newUser, Password = :newPass, PhoneNum = :newPhone, brith_date = :newBrith, Profile_img = :newProfile WHERE Email = :userEmail")
-//    fun updateUser(
-//        newUser: String,
-//        newPass: String,
-//        newPhone: String,
-//        newBrith: String,
-//        newProfile: String,
-//        userEmail: String
-//    )
+    /*    @Query("SELECT * FROM ShareCalendarUser WHERE ShareCalendarId=:shareCalendarId AND masterUser=1")
+        fun getMasterUserInfo(shareCalendarId:String):User
+
+        @Query("SELECT * FROM ShareCalendarUser WHERE ShareCalendarId=:shareCalendarId AND masterUser=0")
+        fun getMemberUserInfo(shareCalendarId:String):List<User>*/
+    @Query("SELECT User.Email, User.Password, User.Name, User.PhoneNum, User.brith_date, User.Profile_img, User.SubTitle FROM User INNER JOIN ShareCalendarUser ON ShareCalendarUser.userEmail = User.Email WHERE ShareCalendarUser.shareCalendarId = :calendarId AND ShareCalendarUser.masterUser = 1")
+    fun getMasterUserInfo(calendarId: String): User
+
+    @Query("SELECT User.Email, User.Password, User.Name, User.PhoneNum, User.brith_date, User.Profile_img, User.SubTitle FROM User INNER JOIN ShareCalendarUser ON ShareCalendarUser.userEmail = User.Email WHERE ShareCalendarUser.shareCalendarId = :calendarId AND ShareCalendarUser.masterUser = 0")
+    fun getMemberUserInfo(calendarId: String): List<User>
+
+    @Query("UPDATE User SET Profile_img = :newProfile WHERE Email = :profileUser")
+    fun updateProfile(profileUser: String, newProfile: String)
 }
